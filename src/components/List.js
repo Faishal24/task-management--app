@@ -1,31 +1,26 @@
-// Card.js
 import React from "react";
 import { View, StyleSheet } from "react-native";
 import { Div, Text } from "react-native-magnus";
 
-const Card = ({ title, description, date, opacity }) => {
+const List = ({ title, date }) => {
   return (
     <Div
-      w={220}
-      h={220}
-      bg="#008CFF"
+      w="100%"
+      h={70}
+      bg="#FFFFFF"
       rounded="lg"
       p={15}
       mr={15}
       my={20}
       // justifyContent='center'
       // alignItems='center'
-      opacity={opacity}
     >
       <Div flex={1} justifyContent="space-around">
-        <Text color="#FFFFFF" fontSize={20} fontWeight="800">
+        <Text color="#2E3A59" fontSize="lg" fontWeight="800">
           {title}
         </Text>
         <Div>
-          <Text color="#FFFFFF" fontSize={27} fontWeight="800">
-            {description}
-          </Text>
-          <Text color="#FFFFFF" fontSize={15} fontWeight="300" mt={10}>
+          <Text color="#2E3A59" fontSize="md" fontWeight="800">
             {date}
           </Text>
         </Div>
@@ -34,4 +29,4 @@ const Card = ({ title, description, date, opacity }) => {
   );
 };
 
-export default Card;
+export default List;

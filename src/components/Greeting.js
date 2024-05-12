@@ -8,7 +8,7 @@ const Greeting = () => {
     <Div>
       <Text
         fontSize="5xl"
-        fontWeight="bold"
+        fontWeight="900"
         textTransform="uppercase"
         letterSpacing={2}
         mt="sm"
