@@ -1,14 +1,12 @@
 import React from "react";
 import { View } from "react-native";
 import { Div, Text, Icon } from "react-native-magnus";
-import Greeting from "./components/Greeting";
-import Card from "./components/Card/Card";
-import Navbar from "./components/Navbar";
-import NavbarBottom from "./components/NavbarBottom";
-import Filter from "./components/Filter";
-import List from "./components/List/List";
-import Cards from "./components/Card/Cards";
-import Lists from "./components/List/Lists";
+import Greeting from "../components/Greeting";
+import Navbar from "../components/Navbar";
+import NavbarBottom from "../components/NavbarBottom";
+import Filter from "../components/Filter";
+import Cards from "../components/Card/Cards";
+import Lists from "../components/List/Lists";
 
 const Home = () => {
   return (

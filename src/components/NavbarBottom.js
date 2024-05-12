@@ -1,5 +1,5 @@
 import React from "react";
-import { View } from "react-native";
+import { TouchableOpacity } from "react-native";
 import { Div, Icon } from "react-native-magnus";
 
 const NavbarBottom = () => {
@@ -11,27 +11,35 @@ const NavbarBottom = () => {
       row
       justifyContent="space-around"
     >
-      <Icon
-        name="home"
-        fontFamily="Ionicons"
-        fontSize={32}
-        color="#008CFF"
-        rounded="md"
-      />
-      <Icon
-        name="calendar"
-        fontFamily="Ionicons"
-        fontSize={32}
-        color="#D8DEF3"
-        rounded="md"
-      />
-      <Icon
-        name="settings"
-        fontFamily="Ionicons"
-        fontSize={32}
-        color="#D8DEF3"
-        rounded="md"
-      />
+      <TouchableOpacity>
+        <Icon
+          name="home"
+          fontFamily="Ionicons"
+          fontSize={32}
+          color="#008CFF"
+          rounded="md"
+        />
+      </TouchableOpacity>
+
+      <TouchableOpacity>
+        <Icon
+          name="calendar"
+          fontFamily="Ionicons"
+          fontSize={32}
+          color="#D8DEF3"
+          rounded="md"
+        />
+      </TouchableOpacity>
+
+      <TouchableOpacity>
+        <Icon
+          name="settings"
+          fontFamily="Ionicons"
+          fontSize={32}
+          color="#D8DEF3"
+          rounded="md"
+        />
+      </TouchableOpacity>
     </Div>
   );
 };

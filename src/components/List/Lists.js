@@ -4,10 +4,17 @@ import { Div } from "react-native-magnus";
 import List from "./List";
 
 const Lists = () => {
+  const handlePress = () => {
+    console.log("View ditekan!");
+  };
+
   return (
-    <Div>
-      <List title="Laporan" date="2 hari lalu" />
-      <List title="Laporan" date="baru saja" />
+    <Div h={190}>
+      <ScrollView showsVerticalScrollIndicator={false}>
+          <List title="Laporan" date="2 hari lalu" />
+        <List title="Laporan" date="baru saja" />
+        <List title="Laporan" date="baru saja" />
+      </ScrollView>
     </Div>
   );
 };

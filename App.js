@@ -2,7 +2,7 @@ import React from "react";
 import { StatusBar } from "react-native";
 import { ThemeProvider } from 'react-native-magnus';
 import * as NavigationBar from 'expo-navigation-bar';
-import Home from "./src/Home";
+import Home from "./src/Pages/Home";
 
 export default function App() {
   NavigationBar.setBackgroundColorAsync("#F2F5FF")
