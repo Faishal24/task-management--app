@@ -10,10 +10,8 @@ const Card = ({ title, description, date, opacity }) => {
       bg="#008CFF"
       rounded="2xl"
       p={25}
-      mr={15}
+      mx={20}
       my={20}
-      // justifyContent='center'
-      // alignItems='center'
       opacity={opacity}
     >
       <Div flex={1} justifyContent="space-between">

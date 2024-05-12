@@ -1,7 +1,7 @@
 import React from "react";
 import { View } from "react-native";
 import { Div, Text } from "react-native-magnus";
-import Card from "./Card";
+import Card from "./Card/Card";
 
 const Greeting = () => {
   return (
