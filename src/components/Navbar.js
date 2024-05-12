@@ -1,5 +1,5 @@
 import React from "react";
-import { Div, Text, Icon } from "react-native-magnus";
+import { Div, Icon } from "react-native-magnus";
 
 const Navbar = () => {
   return (
@@ -8,16 +8,19 @@ const Navbar = () => {
         name="menu"
         fontFamily="Ionicons"
         fontSize={32}
-        color="#66717E"
+        color="#2E3A59"
         rounded="md"
       />
 
-      <Icon 
-        name="user-circle" 
-        fontFamily="FontAwesome"
-        fontSize={30}
-        color="#66717E"    
-    />
+      <Div bg="#2E3A59" h={35} w={35} rounded={30} justifyContent="center">
+        <Icon
+          name="user-alt"
+          fontFamily="FontAwesome5"
+          fontSize={18}
+          color="#F2F5FF"
+          rounded="md"
+        />
+      </Div>
     </Div>
   );
 };

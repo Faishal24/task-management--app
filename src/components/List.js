@@ -1,6 +1,7 @@
 import React from "react";
 import { View, StyleSheet } from "react-native";
-import { Div, Text, Icon } from "react-native-magnus";
+import { Div, Text, Icon, Button } from "react-native-magnus";
+
 
 const List = ({ title, date }) => {
   return (

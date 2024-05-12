@@ -1,26 +1,38 @@
 // Card.js
 import React from "react";
-import { View, StyleSheet } from "react-native";
-import { Div, Text } from "react-native-magnus";
+import { Div, Text, Icon } from "react-native-magnus";
 
 const Card = ({ title, description, date, opacity }) => {
   return (
     <Div
-      w={220}
-      h={220}
+      w={210}
+      h={210}
       bg="#008CFF"
-      rounded="lg"
-      p={15}
+      rounded="2xl"
+      p={25}
       mr={15}
       my={20}
       // justifyContent='center'
       // alignItems='center'
       opacity={opacity}
     >
-      <Div flex={1} justifyContent="space-around">
+      <Div flex={1} justifyContent="space-between">
+        <Div row>
+          <Icon
+            name="tasks"
+            fontFamily="FontAwesome5"
+            fontSize={20}
+            color="white"
+            rounded="md"
+            bg="#54b2ff"
+            h={35}
+            w={35}
+            mr={10}
+          />
         <Text color="#FFFFFF" fontSize={20} fontWeight="800">
           {title}
         </Text>
+        </Div>
         <Div>
           <Text color="#FFFFFF" fontSize={27} fontWeight="800">
             {description}

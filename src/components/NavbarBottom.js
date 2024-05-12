@@ -15,7 +15,7 @@ const NavbarBottom = () => {
         name="home"
         fontFamily="Ionicons"
         fontSize={32}
-        color="#D8DEF3"
+        color="#008CFF"
         rounded="md"
       />
       <Icon
