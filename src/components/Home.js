@@ -37,6 +37,7 @@ const Home = () => {
         </View>
         <Text fontSize="3xl" fontWeight="900">Sedang Berjalan</Text>
         <List title="Laporan" date="2 hari lalu"/>
+        <List title="Rakit Lego woy" date="baru saja"/>
       </Div>
       <NavbarBottom/>
     </Div>
