@@ -21,7 +21,7 @@ const NavbarBottom = ({navigation}) => {
         />
       </TouchableOpacity>
 
-      <TouchableOpacity>
+      <TouchableOpacity onPress={() => navigation.navigate('Calendar')}>
         <Icon
           name="calendar"
           fontFamily="Ionicons"
@@ -31,7 +31,7 @@ const NavbarBottom = ({navigation}) => {
         />
       </TouchableOpacity>
 
-      <TouchableOpacity>
+      <TouchableOpacity onPress={() => navigation.navigate('Login')}>
         <Icon
           name="settings"
           fontFamily="Ionicons"

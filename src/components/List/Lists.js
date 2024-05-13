@@ -11,7 +11,7 @@ const Lists = () => {
   return (
     <Div h={190}>
       <ScrollView showsVerticalScrollIndicator={false}>
-          <List title="Laporan" date="2 hari lalu" />
+        <List title="Laporan" date="2 hari lalu" />
         <List title="Laporan" date="baru saja" />
         <List title="Laporan" date="baru saja" />
       </ScrollView>

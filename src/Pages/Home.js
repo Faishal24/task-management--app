@@ -6,7 +6,6 @@ import NavbarBottom from "../components/Navbar/NavbarBottom";
 import Filter from "../components/Filter";
 import Cards from "../components/Card/Cards";
 import Lists from "../components/List/Lists";
-import { TouchableOpacity } from "react-native";
 
 const Home = ({navigation}) => {
   return (

@@ -6,6 +6,8 @@ import { ThemeProvider } from 'react-native-magnus';
 import * as NavigationBar from 'expo-navigation-bar';
 import Home from "./src/Pages/Home";
 import TestApi from "./src/Pages/TestApi";
+import Calendar from "./src/Pages/Calendar";
+import Login from "./src/Pages/Login";
 
 const Stack = createNativeStackNavigator()
 
@@ -20,6 +22,8 @@ export default function App() {
       <NavigationContainer>
         <Stack.Navigator screenOptions={{headerShown: false}}>
           <Stack.Screen name="Home" component={Home}/>
+          <Stack.Screen name="Calendar" component={Calendar}/>
+          <Stack.Screen name="Login" component={Login}/>
           <Stack.Screen name="Tes" component={TestApi}/>
         </Stack.Navigator>
       </NavigationContainer>
