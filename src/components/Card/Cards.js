@@ -16,7 +16,7 @@ const Cards = () => {
         />
         <Card
           title="Tugas 2"
-          description="Ini juga deskripsi tugas"
+          description="Ini deskripsi tugas"
           date="11 Mei 2024"
           opacity={0.5}
         />

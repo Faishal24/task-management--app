@@ -18,7 +18,7 @@ const Home = ({navigation}) => {
         <Text fontSize="3xl" fontWeight="900" mb={10}>
           Sedang Berjalan
         </Text>
-        <Lists />
+        <Lists navigation={navigation}/>
       </Div>
         <NavbarBottom navigation={navigation}/>
     </Div>

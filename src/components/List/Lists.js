@@ -1,9 +1,9 @@
 import React from "react";
-import { ScrollView } from "react-native";
+import { ScrollView, TouchableOpacity } from "react-native";
 import { Div } from "react-native-magnus";
 import List from "./List";
 
-const Lists = () => {
+const Lists = ({ navigation }) => {
   const handlePress = () => {
     console.log("View ditekan!");
   };
@@ -11,7 +11,9 @@ const Lists = () => {
   return (
     <Div h={190}>
       <ScrollView showsVerticalScrollIndicator={false}>
-        <List title="Laporan" date="2 hari lalu" />
+        <TouchableOpacity onPress={() => navigation.navigate("Task")}>
+          <List title="Laporan" date="2 hari lalu" />
+        </TouchableOpacity>
         <List title="Laporan" date="baru saja" />
         <List title="Laporan" date="baru saja" />
       </ScrollView>
