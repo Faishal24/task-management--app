@@ -1,8 +1,10 @@
 import React from "react";
 import { Div, Text, Header, Button, Icon } from "react-native-magnus";
 import List from "../components/List/List";
+import NavbarBottom from "../components/Navbar/NavbarBottom";
 
 const Calendar = () => {
+
   return (
     <Div bg="#F2F5FF" h="100%">
       <Div
@@ -122,6 +124,7 @@ const Calendar = () => {
         <Text fontSize={30} fontWeight="900" pb={30}>Tugas</Text>
         <List title="Laporan" date="2 hari lalu" />
       </Div>
+      <NavbarBottom/>
     </Div>
   );
 };

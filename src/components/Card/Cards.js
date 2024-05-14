@@ -29,6 +29,10 @@ const Cards = ({ navigation, worker }) => {
         </ScrollView>
       </Div>
 
+      <Div alignItems="center">
+        <Div h={1} w="70%" bg="#D8DEF3" mb={10}></Div>
+      </Div>
+
       {/* <Div row justifyContent="center" mb={10}>
         <Icon
           name="dot-fill"
