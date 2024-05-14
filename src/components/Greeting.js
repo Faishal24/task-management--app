@@ -1,9 +1,9 @@
 import React from "react";
-import { View } from "react-native";
+import { TouchableOpacity } from "react-native";
 import { Div, Text } from "react-native-magnus";
 import Card from "./Card/Card";
 
-const Greeting = () => {
+const Greeting = ({ worker }) => {
   return (
     <Div>
       <Text
@@ -14,9 +14,13 @@ const Greeting = () => {
         mt="sm"
         mb={5}
       >
-        Hi, Faishal!
+        Hi, {worker.name.split(' ')[0]}!
       </Text>
-      <Text mb={30} fontSize="xl">Selamat Pagi</Text>
+      <TouchableOpacity onPress={() =>console.log(worker)}>
+        <Text mb={30} fontSize="xl">
+          Selamat Pagi
+        </Text>
+      </TouchableOpacity>
     </Div>
   );
 };

@@ -1,31 +1,48 @@
-import React, {useState} from "react";
+import React, { useState, useEffect } from "react";
 import { Image } from "react-native";
 import { Div, Text, Icon, Input, Button } from "react-native-magnus";
+import axios from "axios";
 const logo = require("./../../assets/logo.png");
 
 const Login = ({ navigation }) => {
+  const [worker, setWorker] = useState([]);
+  const [selectedWorker, setSelectedWorker] = useState()
   const [form, setForm] = useState({
-    name: '',
-    password: ''
-  })
+    name: "",
+    password: "",
+  });
 
   const handleChange = (name, value) => {
     setForm({
       ...form,
-      [name]: value
-    })
-  }
+      [name]: value,
+    });
+  };
 
   const handleLogin = () => {
-    console.log(form)
-    navigation.navigate("Home")
+    console.log(worker);
+    navigation.navigate("Home", { worker });
+  };
+
+  const select = () => {
+    worker.map
   }
+
+  ///////////////
+  // useEffect //
+  ///////////////
+  useEffect(() => {
+    axios.get("http://192.168.1.5:5000/get").then((res) => setWorker(res.data[2]));
+  }, []);
 
   return (
     <Div h="100%" bg="#F2F5FF">
       <Div mt={0} mx={20}>
         <Div alignItems="center" mt={100} mb={30}>
-          <Image style={{ width: 100, height: 100, marginBottom: 30 }} source={logo} />
+          <Image
+            style={{ width: 100, height: 100, marginBottom: 30 }}
+            source={logo}
+          />
 
           <Text fontSize={35} fontWeight="400" color="#2E3A59">
             Selamat Datang
@@ -53,7 +70,7 @@ const Login = ({ navigation }) => {
           borderColor="#F2F5FF"
           rounded={10}
           mb={20}
-          onChangeText={(text) => handleChange('name', text)}
+          onChangeText={(text) => handleChange("name", text)}
           value={form.name}
         />
         <Input
@@ -72,7 +89,7 @@ const Login = ({ navigation }) => {
           borderColor="#F2F5FF"
           rounded={10}
           mb={20}
-          onChangeText={text => handleChange('password', text)}
+          onChangeText={(text) => handleChange("password", text)}
           value={form.password}
         />
         <Button
