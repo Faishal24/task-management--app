@@ -6,7 +6,6 @@ const logo = require("./../../assets/logo.png");
 
 const Login = ({ navigation }) => {
   const [worker, setWorker] = useState([]);
-  const [selectedWorker, setSelectedWorker] = useState()
   const [form, setForm] = useState({
     name: "",
     password: "",

@@ -47,7 +47,7 @@ const Task = () => {
         </Div>
       </Div>
       {/* Bawah */}
-      <Div p={25} bg="white">
+      <Div p={25} bg="white" h="100%">
         <Div row justifyContent="space-between">
           <Div>
             <Text fontSize="xl" color="#b3b8c9" mb={10}>

@@ -13,7 +13,7 @@ const Home = ({ navigation }) => {
   const { worker } = route.params;
   return (
     <Div bg="#F2F5FF" h="100%">
-      <Navbar />
+      <Navbar navigation={navigation}/>
       <Div mt={15} mx={20}>
         <Greeting worker={worker} />
         <Filter />

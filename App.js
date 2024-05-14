@@ -9,6 +9,7 @@ import TestApi from "./src/Pages/TestApi";
 import Calendar from "./src/Pages/Calendar";
 import Login from "./src/Pages/Login";
 import Task from "./src/Pages/Task";
+import Profile from "./src/Pages/Profile";
 
 const Stack = createNativeStackNavigator()
 
@@ -26,6 +27,7 @@ export default function App() {
           <Stack.Screen name="Home" component={Home}/>
           <Stack.Screen name="Calendar" component={Calendar}/>
           <Stack.Screen name="Task" component={Task}/>
+          <Stack.Screen name="Profile" component={Profile}/>
           <Stack.Screen name="Tes" component={TestApi}/>
         </Stack.Navigator>
       </NavigationContainer>
