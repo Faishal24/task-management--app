@@ -21,7 +21,7 @@ const Home = ({ navigation }) => {
         <Text fontSize="3xl" fontWeight="900" mb={10}>
           Sedang Berjalan
         </Text>
-        <Lists navigation={navigation} />
+        <Lists navigation={navigation} worker={worker}/>
       </Div>
       <NavbarBottom navigation={navigation} />
     </Div>

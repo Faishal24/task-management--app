@@ -5,7 +5,7 @@ import Card from "./Card";
 
 const Cards = ({ worker }) => {
   const [tasks, setTasks] = useState([]);
-
+  
   useEffect(() => {
     setTasks(worker.tasks);
   }, [worker]);
