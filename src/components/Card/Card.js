@@ -32,7 +32,7 @@ const Card = ({ title, description, date, opacity }) => {
         </Text>
         </Div>
         <Div>
-          <Text color="#FFFFFF" fontSize={27} fontWeight="800">
+          <Text color="#FFFFFF" fontSize={23} fontWeight="800">
             {description}
           </Text>
           <Text color="#FFFFFF" fontSize={15} fontWeight="300" mt={10}>

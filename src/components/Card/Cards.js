@@ -1,29 +1,31 @@
-import React from "react";
-import { ScrollView } from "react-native";
+import React, { useState, useEffect } from "react";
+import { ScrollView, TouchableOpacity } from "react-native";
 import { Div, Icon } from "react-native-magnus";
 import Card from "./Card";
 
-const Cards = () => {
+const Cards = ({ worker }) => {
+  const [tasks, setTasks] = useState([]);
+
+  useEffect(() => {
+    setTasks(worker.tasks);
+  }, [worker]);
+
   return (
     <Div>
       <Div justifyContent="space-between" row mx={-20}>
         <ScrollView horizontal={true}>
-        <Card
-          title="Tugas 1"
-          description="Ini deskripsi tugas"
-          date="13 Mei 2024"
-          opacity={1}
-        />
-        <Card
-          title="Tugas 2"
-          description="Ini deskripsi tugas"
-          date="11 Mei 2024"
-          opacity={0.5}
-        />
+          {tasks.map((task, index) => (
+            <Card
+              title={`Tugas ${index + 1}`}
+              description={task.description}
+              date={task.dueTo}
+              opacity={1}
+            />
+          ))}
         </ScrollView>
       </Div>
 
-      <Div row justifyContent="center" mb={10}>
+      {/* <Div row justifyContent="center" mb={10}>
         <Icon
           name="dot-fill"
           fontFamily="Octicons"
@@ -46,7 +48,7 @@ const Cards = () => {
           color="#66717E"
           rounded="md"
         />
-      </Div>
+      </Div> */}
     </Div>
   );
 };
