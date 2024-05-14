@@ -17,7 +17,7 @@ const Home = ({ navigation }) => {
       <Div mt={15} mx={20}>
         <Greeting worker={worker} />
         <Filter />
-        <Cards worker={worker}/>
+        <Cards navigation={navigation} worker={worker}/>
         <Text fontSize="3xl" fontWeight="900" mb={10}>
           Sedang Berjalan
         </Text>

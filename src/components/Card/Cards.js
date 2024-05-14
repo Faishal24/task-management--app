@@ -3,9 +3,9 @@ import { ScrollView, TouchableOpacity } from "react-native";
 import { Div, Icon } from "react-native-magnus";
 import Card from "./Card";
 
-const Cards = ({ worker }) => {
+const Cards = ({ navigation, worker }) => {
   const [tasks, setTasks] = useState([]);
-  
+
   useEffect(() => {
     setTasks(worker.tasks);
   }, [worker]);
@@ -15,12 +15,16 @@ const Cards = ({ worker }) => {
       <Div justifyContent="space-between" row mx={-20}>
         <ScrollView horizontal={true}>
           {tasks.map((task, index) => (
-            <Card
-              title={`Tugas ${index + 1}`}
-              description={task.description}
-              date={task.dueTo}
-              opacity={1}
-            />
+            <TouchableOpacity
+              onPress={() => navigation.navigate("Task", { task })}
+            >
+              <Card
+                title={`Tugas ${index + 1}`}
+                description={task.description}
+                date={task.dueTo}
+                opacity={1}
+              />
+            </TouchableOpacity>
           ))}
         </ScrollView>
       </Div>

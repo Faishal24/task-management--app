@@ -25,10 +25,12 @@ const Lists = ({ navigation, worker }) => {
       .join(" ");
   };
 
+  const data = tasks.slice(0, 2)
+
   return (
     <Div h={190}>
       <ScrollView showsVerticalScrollIndicator={false}>
-        {tasks.map((task) => {
+        {data.map((task) => {
           const [day, month, year] = task.createdAt.split('-')
           const numericDay = parseInt(day, 10);
           const numericMonth = parseInt(month, 10); // Kurangi 1 karena bulan dimulai dari 0
@@ -40,12 +42,13 @@ const Lists = ({ navigation, worker }) => {
 
           const waktu = fns.split(' ')[1]
           return (
-            <TouchableOpacity onPress={() => navigation.navigate("Task")}>
+            <TouchableOpacity onPress={() => navigation.navigate("Task", { task })}>
               <List
                 title={toCamelCase(
                   (task.description).split(" ").slice(0, 2).join(" ")
                 )}
                 date={`${waktu} hari yang lalu`}
+                key={task._id}
               />
             </TouchableOpacity>
           );

@@ -1,8 +1,10 @@
 import React from "react";
+import { useRoute } from "@react-navigation/native";
 import { Div, Text, Icon, Header, Button } from "react-native-magnus";
 import { StatusBar } from "react-native";
 
 const Task = () => {
+  const {task} = useRoute().params
   return (
     <Div>
       <StatusBar barStyle="dark-content" backgroundColor="#008CFF" />
@@ -33,14 +35,14 @@ const Task = () => {
             Nama
           </Text>
           <Text fontSize={25} fontWeight="900" color="white" mb={25}>
-            Memeriksa Laporan Pajak
+            {task.description}
           </Text>
 
           <Text fontSize="xl" color="white" my={10}>
             Tanggal
           </Text>
           <Text fontSize={25} fontWeight="900" color="white" mb={35}>
-            13 Mei 2099
+            {task.dueTo}
           </Text>
         </Div>
       </Div>
@@ -52,32 +54,30 @@ const Task = () => {
               Tugas Dibuat
             </Text>
             <Text fontSize={25} fontWeight="900" color="#2E3A59">
-              06 Mei 2099
+              {task.createdAt}
             </Text>
           </Div>
 
           <Div>
             <Text fontSize="xl" color="#b3b8c9" mb={10}>
-              Tugas Dibuat
+              Batas Tugas
             </Text>
             <Text fontSize={25} fontWeight="900" color="#2E3A59">
-              09 Mei 2099
+              {task.dueTo}
             </Text>
           </Div>
         </Div>
 
-        <Div mt={30}>
-          <Text fontSize="xl" color="#b3b8c9" m={10}>
+        <Div mt={15}>
+          <Text fontSize="xl" color="#b3b8c9" my={10}>
             Deskripsi
           </Text>
           <Text fontSize={15} fontWeight="600" textAlign="justify">
-            Memeriksa laporan pajak tahunan untuk memastikan kepatuhan
-            perpajakan yang tepat waktu serta menjamin keakuratan dan
-            kelengkapan dokumen yang terkait.
+            {task.content}
           </Text>
         </Div>
 
-        <Div mt={30}>
+        <Div mt={25}>
           <Text fontSize="xl" color="#b3b8c9" mb={10}>
             File
           </Text>
