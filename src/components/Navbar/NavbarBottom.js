@@ -11,7 +11,7 @@ const NavbarBottom = ({navigation}) => {
       row
       justifyContent="space-around"
     >
-      <TouchableOpacity onPress={() => navigation.navigate('Task')}>
+      <TouchableOpacity onPress={() => navigation.navigate('Home')}>
         <Icon
           name="home"
           fontFamily="Ionicons"

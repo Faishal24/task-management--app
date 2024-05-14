@@ -1,14 +1,31 @@
-import React from "react";
+import React, {useState} from "react";
 import { Image } from "react-native";
 import { Div, Text, Icon, Input, Button } from "react-native-magnus";
 const logo = require("./../../assets/logo.png");
 
 const Login = ({ navigation }) => {
+  const [form, setForm] = useState({
+    name: '',
+    password: ''
+  })
+
+  const handleChange = (name, value) => {
+    setForm({
+      ...form,
+      [name]: value
+    })
+  }
+
+  const handleLogin = () => {
+    console.log(form)
+    navigation.navigate("Home")
+  }
+
   return (
     <Div h="100%" bg="#F2F5FF">
       <Div mt={0} mx={20}>
-        <Div alignItems="center" mt={80} mb={30}>
-          <Image style={{ width: 170, height: 170 }} source={logo} />
+        <Div alignItems="center" mt={100} mb={30}>
+          <Image style={{ width: 100, height: 100, marginBottom: 30 }} source={logo} />
 
           <Text fontSize={35} fontWeight="400" color="#2E3A59">
             Selamat Datang
@@ -36,6 +53,8 @@ const Login = ({ navigation }) => {
           borderColor="#F2F5FF"
           rounded={10}
           mb={20}
+          onChangeText={(text) => handleChange('name', text)}
+          value={form.name}
         />
         <Input
           placeholder="Kata Sandi"
@@ -53,6 +72,8 @@ const Login = ({ navigation }) => {
           borderColor="#F2F5FF"
           rounded={10}
           mb={20}
+          onChangeText={text => handleChange('password', text)}
+          value={form.password}
         />
         <Button
           w="100%"
@@ -60,7 +81,7 @@ const Login = ({ navigation }) => {
           rounded={100}
           bg="#008CFF"
           fontWeight="900"
-          onPress={() => navigation.navigate("Home")}
+          onPress={() => handleLogin()}
         >
           Masuk
         </Button>
