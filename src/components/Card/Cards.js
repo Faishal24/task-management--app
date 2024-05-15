@@ -10,6 +10,20 @@ const Cards = ({ navigation, worker }) => {
     setTasks(worker.tasks);
   }, [worker]);
 
+  const toCamelCase = (str) => {
+    return str
+      .toLowerCase()
+      .split(" ")
+      .map((word, index) => {
+        if (index === 0) {
+          return word.charAt(0).toUpperCase() + word.slice(1);
+        } else {
+          return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
+        }
+      })
+      .join(" ");
+  };
+
   return (
     <Div>
       <Div justifyContent="space-between" row mx={-20}>
@@ -20,7 +34,7 @@ const Cards = ({ navigation, worker }) => {
             >
               <Card
                 title={`Tugas ${index + 1}`}
-                description={task.description}
+                description={toCamelCase(task.description).split(" ").slice(0, 3).join(" ")}
                 date={task.dueTo}
                 opacity={1}
               />
