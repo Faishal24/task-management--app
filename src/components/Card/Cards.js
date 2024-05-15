@@ -15,7 +15,7 @@ const Cards = ({ navigation, worker }) => {
     <Div>
       <Div justifyContent="space-between" row mx={-20}>
         <ScrollView horizontal={true}>
-          {tasks.map((task, index) => (
+        {tasks.filter((task) => task.status !== "done").map((task, index) => (
             <TouchableOpacity
               onPress={() => navigation.navigate("Task", { task })}
             >

@@ -1,6 +1,6 @@
-const formatDate = (dateStr) => {
+const dateFix = (str) => {
   // Pisahkan string berdasarkan tanda "-"
-  const parts = dateStr.split("-");
+  const parts = str.split("-");
 
   // Pastikan setiap bagian memiliki dua digit
   const day = parts[0].padStart(2, "0");
@@ -11,4 +11,4 @@ const formatDate = (dateStr) => {
   return `${day}-${month}-${year}`;
 };
 
-export default formatDate;
+export default dateFix;

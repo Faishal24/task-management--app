@@ -31,7 +31,7 @@ const Lists = ({ navigation, worker }) => {
   return (
     <Div h={190}>
       <ScrollView showsVerticalScrollIndicator={false}>
-        {data.map((task) => {
+        {data.filter((task) => task.status !== "done").map((task) => {
           const [day, month, year] = task.createdAt.split('-')
           const numericDay = parseInt(day, 10);
           const numericMonth = parseInt(month, 10); // Kurangi 1 karena bulan dimulai dari 0

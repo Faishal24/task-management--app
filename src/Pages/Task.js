@@ -2,7 +2,8 @@ import React from "react";
 import { useRoute } from "@react-navigation/native";
 import { Div, Text, Icon, Header, Button } from "react-native-magnus";
 import { StatusBar } from "react-native";
-import formatDate from "../../utils/dateFix"
+import dateFix from "../../utils/dateFix"
+import formatDate from "../../utils/formatDate";
 
 const Task = () => {
   const {task} = useRoute().params
@@ -43,7 +44,7 @@ const Task = () => {
             Tanggal
           </Text>
           <Text fontSize={25} fontWeight="900" color="white" mb={35}>
-            {task.dueTo}
+            {formatDate(task.dueTo)}
           </Text>
         </Div>
       </Div>
@@ -55,7 +56,7 @@ const Task = () => {
               Tugas Dibuat
             </Text>
             <Text fontSize={25} fontWeight="900" color="#2E3A59">
-              {formatDate(task.createdAt)}
+              {dateFix(task.createdAt)}
             </Text>
           </Div>
 
