@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { ScrollView, TouchableOpacity } from "react-native";
 import { Div } from "react-native-magnus";
 import { formatDistanceToNow } from "date-fns";
+import toCamelCase from "../../../utils/camelCase";
 import List from "./List";
 
 const Lists = ({ navigation, worker }) => {

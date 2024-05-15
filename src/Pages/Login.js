@@ -5,7 +5,7 @@ import axios from "axios";
 const logo = require("./../../assets/logo.png");
 
 const Login = ({ navigation }) => {
-  const [worker, setWorker] = useState([]);
+  const [workers, setWorkers] = useState([]);
   const [form, setForm] = useState({
     name: "",
     password: "",
@@ -18,9 +18,26 @@ const Login = ({ navigation }) => {
     });
   };
 
-  const handleLogin = () => {
-    console.log(worker);
-    navigation.navigate("Home", { worker });
+  const handleLogin = async () => {
+    try {
+      const user = workers.find(
+        worker => worker.name === form.name && worker.password === form.password
+      );
+
+      if (user) {
+        // Jika login berhasil, fetch data dari /get menggunakan nama user
+        const response = await axios.get(`http://192.168.1.5:5000/get/${user.name}`);
+        const worker = response.data;
+
+        // Menavigasi ke halaman Home dengan data worker yang ditemukan
+        navigation.navigate('Home', { worker });
+        console.log(worker)
+      } else {
+        console.log('Login gagal: Nama atau kata sandi salah');
+      }
+    } catch (error) {
+      console.error('Error saat login:', error);
+    }
   };
 
   const select = () => {
@@ -31,7 +48,16 @@ const Login = ({ navigation }) => {
   // useEffect //
   ///////////////
   useEffect(() => {
-    axios.get("http://192.168.1.5:5000/get").then((res) => setWorker(res.data[1]));
+    const fetchWorkers = async () => {
+      try {
+        const response = await axios.get('http://192.168.1.5:5000/user/worker');
+        setWorkers(response.data);
+      } catch (error) {
+        console.error('Error fetching workers:', error);
+      }
+    };
+
+    fetchWorkers();
   }, []);
 
   return (

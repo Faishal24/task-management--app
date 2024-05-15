@@ -2,7 +2,7 @@ import React from "react";
 import { TouchableOpacity } from "react-native";
 import { useRoute } from "@react-navigation/native";
 import { Button, Icon, Div, Header, Image, Text } from "react-native-magnus";
-import toCamelCase from "../../utils/CamelCase";
+import toCamelCase from "../../utils/camelCase";
 import NavbarBottom from "../components/Navbar/NavbarBottom";
 const logo = require("./../../assets/splash2.png");
 

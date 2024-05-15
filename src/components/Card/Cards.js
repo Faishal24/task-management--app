@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { ScrollView, TouchableOpacity } from "react-native";
 import { Div, Icon } from "react-native-magnus";
-import toCamelCase from "../../../utils/CamelCase";
+import toCamelCase from "../../../utils/camelCase";
 import Card from "./Card";
 
 const Cards = ({ navigation, worker }) => {
