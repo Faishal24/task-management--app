@@ -3,6 +3,7 @@ import { TouchableOpacity } from "react-native";
 import { useRoute } from "@react-navigation/native";
 import { Button, Icon, Div, Header, Image, Text } from "react-native-magnus";
 import toCamelCase from "../../utils/CamelCase";
+import NavbarBottom from "../components/Navbar/NavbarBottom";
 const logo = require("./../../assets/splash2.png");
 
 const Setting = ({ navigation }) => {
@@ -10,7 +11,7 @@ const Setting = ({ navigation }) => {
   const { worker } = route.params;
 
   return (
-    <Div>
+    <Div bg="#F2F5FF" h="100%">
       <Header
         p="lg"
         alignment="center"
@@ -30,7 +31,7 @@ const Setting = ({ navigation }) => {
         Setting
       </Header>
 
-      <Div p={25} bg="#F2F5FF" h="100%">
+      <Div p={25}>
         {/* Data Diri */}
         <TouchableOpacity
           onPress={() => navigation.navigate("Profile", { worker })}
@@ -105,6 +106,8 @@ const Setting = ({ navigation }) => {
           </Div>
         </TouchableOpacity>
       </Div>
+
+      <NavbarBottom navigation={navigation} worker={worker}/>
     </Div>
   );
 };
