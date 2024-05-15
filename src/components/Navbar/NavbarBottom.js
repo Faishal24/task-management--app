@@ -2,7 +2,7 @@ import React from "react";
 import { TouchableOpacity } from "react-native";
 import { Div, Icon } from "react-native-magnus";
 
-const NavbarBottom = ({navigation}) => {
+const NavbarBottom = ({navigation, worker}) => {
   return (
     <Div
       bottom={0}
@@ -11,7 +11,7 @@ const NavbarBottom = ({navigation}) => {
       row
       justifyContent="space-around"
     >
-      <TouchableOpacity onPress={() => navigation.navigate('Home')}>
+      <TouchableOpacity onPress={() => navigation.navigate('Home', {worker})}>
         <Icon
           name="home"
           fontFamily="Ionicons"
@@ -21,7 +21,7 @@ const NavbarBottom = ({navigation}) => {
         />
       </TouchableOpacity>
 
-      <TouchableOpacity onPress={() => navigation.navigate('Calendar')}>
+      <TouchableOpacity onPress={() => navigation.navigate('Calendar', {worker})}>
         <Icon
           name="calendar"
           fontFamily="Ionicons"
@@ -31,7 +31,7 @@ const NavbarBottom = ({navigation}) => {
         />
       </TouchableOpacity>
 
-      <TouchableOpacity onPress={() => navigation.navigate('Login')}>
+      <TouchableOpacity onPress={() => navigation.navigate('Login', {worker})}>
         <Icon
           name="settings"
           fontFamily="Ionicons"

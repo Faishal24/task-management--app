@@ -31,7 +31,7 @@ const Login = ({ navigation }) => {
   // useEffect //
   ///////////////
   useEffect(() => {
-    axios.get("http://192.168.1.5:5000/get").then((res) => setWorker(res.data[0]));
+    axios.get("http://192.168.1.5:5000/get").then((res) => setWorker(res.data[1]));
   }, []);
 
   return (

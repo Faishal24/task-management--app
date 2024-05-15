@@ -48,7 +48,6 @@ const Lists = ({ navigation, worker }) => {
                   (task.description).split(" ").slice(0, 2).join(" ")
                 )}
                 date={`${waktu} hari yang lalu`}
-                key={task._id}
               />
             </TouchableOpacity>
           );

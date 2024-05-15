@@ -5,7 +5,6 @@ import { StatusBar } from "react-native";
 import { ThemeProvider } from 'react-native-magnus';
 import * as NavigationBar from 'expo-navigation-bar';
 import Home from "./src/Pages/Home";
-import TestApi from "./src/Pages/TestApi";
 import Calendar from "./src/Pages/Calendar";
 import Login from "./src/Pages/Login";
 import Task from "./src/Pages/Task";
@@ -28,7 +27,6 @@ export default function App() {
           <Stack.Screen name="Calendar" component={Calendar}/>
           <Stack.Screen name="Task" component={Task}/>
           <Stack.Screen name="Profile" component={Profile}/>
-          <Stack.Screen name="Tes" component={TestApi}/>
         </Stack.Navigator>
       </NavigationContainer>
     </ThemeProvider>

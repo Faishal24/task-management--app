@@ -1,9 +1,12 @@
 import React from "react";
+import { useRoute } from "@react-navigation/native";
 import { Div, Text, Header, Button, Icon } from "react-native-magnus";
 import List from "../components/List/List";
 import NavbarBottom from "../components/Navbar/NavbarBottom";
 
-const Calendar = () => {
+const Calendar = ({navigation}) => {
+  const route = useRoute();
+  const {worker} = route.params
 
   return (
     <Div bg="#F2F5FF" h="100%">
@@ -124,7 +127,7 @@ const Calendar = () => {
         <Text fontSize={30} fontWeight="900" pb={30}>Tugas</Text>
         <List title="Laporan" date="2 hari lalu" />
       </Div>
-      <NavbarBottom/>
+      <NavbarBottom navigation={navigation} worker={worker}/>
     </Div>
   );
 };
