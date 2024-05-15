@@ -31,7 +31,7 @@ const NavbarBottom = ({navigation, worker}) => {
         />
       </TouchableOpacity>
 
-      <TouchableOpacity onPress={() => navigation.navigate('Login', {worker})}>
+      <TouchableOpacity onPress={() => navigation.navigate('Setting', {worker})}>
         <Icon
           name="settings"
           fontFamily="Ionicons"

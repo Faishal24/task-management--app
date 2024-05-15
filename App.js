@@ -9,6 +9,7 @@ import Calendar from "./src/Pages/Calendar";
 import Login from "./src/Pages/Login";
 import Task from "./src/Pages/Task";
 import Profile from "./src/Pages/Profile";
+import Setting from "./src/Pages/Setting";
 
 const Stack = createNativeStackNavigator()
 
@@ -27,6 +28,7 @@ export default function App() {
           <Stack.Screen name="Calendar" component={Calendar}/>
           <Stack.Screen name="Task" component={Task}/>
           <Stack.Screen name="Profile" component={Profile}/>
+          <Stack.Screen name="Setting" component={Setting}/>
         </Stack.Navigator>
       </NavigationContainer>
     </ThemeProvider>

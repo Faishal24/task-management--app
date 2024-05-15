@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { ScrollView, TouchableOpacity } from "react-native";
 import { Div, Icon } from "react-native-magnus";
+import toCamelCase from "../../../utils/CamelCase";
 import Card from "./Card";
 
 const Cards = ({ navigation, worker }) => {
@@ -9,20 +10,6 @@ const Cards = ({ navigation, worker }) => {
   useEffect(() => {
     setTasks(worker.tasks);
   }, [worker]);
-
-  const toCamelCase = (str) => {
-    return str
-      .toLowerCase()
-      .split(" ")
-      .map((word, index) => {
-        if (index === 0) {
-          return word.charAt(0).toUpperCase() + word.slice(1);
-        } else {
-          return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
-        }
-      })
-      .join(" ");
-  };
 
   return (
     <Div>
