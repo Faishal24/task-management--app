@@ -2,6 +2,7 @@ import React from "react";
 import { useRoute } from "@react-navigation/native";
 import { Div, Text, Icon, Header, Button } from "react-native-magnus";
 import { StatusBar } from "react-native";
+import formatDate from "../../utils/dateFix"
 
 const Task = () => {
   const {task} = useRoute().params
@@ -54,7 +55,7 @@ const Task = () => {
               Tugas Dibuat
             </Text>
             <Text fontSize={25} fontWeight="900" color="#2E3A59">
-              {task.createdAt}
+              {formatDate(task.createdAt)}
             </Text>
           </Div>
 

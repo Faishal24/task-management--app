@@ -1,8 +1,18 @@
 import React, { useState, useEffect } from "react";
 import { Image } from "react-native";
-import { Div, Text, Icon, Input, Button } from "react-native-magnus";
+import {
+  Div,
+  Text,
+  Icon,
+  Input,
+  Button,
+  Snackbar,
+  SnackbarRef,
+} from "react-native-magnus";
 import axios from "axios";
 const logo = require("./../../assets/logo.png");
+
+const snackbarRef = React.createRef();
 
 const Login = ({ navigation }) => {
   const [workers, setWorkers] = useState([]);
@@ -21,28 +31,43 @@ const Login = ({ navigation }) => {
   const handleLogin = async () => {
     try {
       const user = workers.find(
-        worker => worker.name === form.name && worker.password === form.password
+        (worker) =>
+          worker.name === form.name && worker.password === form.password
       );
 
       if (user) {
         // Jika login berhasil, fetch data dari /get menggunakan nama user
-        const response = await axios.get(`http://192.168.1.5:5000/get/${user.name}`);
+        const response = await axios.get(
+          `http://192.168.1.5:5000/get/${user.name}`
+        );
         const worker = response.data;
 
         // Menavigasi ke halaman Home dengan data worker yang ditemukan
-        navigation.navigate('Home', { worker });
-        console.log(worker)
+        navigation.navigate("Home", { worker });
+        console.log(worker);
       } else {
-        console.log('Login gagal: Nama atau kata sandi salah');
+        if (snackbarRef.current) {
+          snackbarRef.current.show("Nama atau kata sandi salah", {
+            duration: 2000,
+            suffix: (
+              <Icon
+                name="closecircle"
+                color="white"
+                fontSize="md"
+                fontFamily="AntDesign"
+              />
+            ),
+          });
+        }
       }
     } catch (error) {
-      console.error('Error saat login:', error);
+      console.error("Error saat login:", error);
     }
   };
 
   const select = () => {
-    worker.map
-  }
+    worker.map;
+  };
 
   ///////////////
   // useEffect //
@@ -50,10 +75,10 @@ const Login = ({ navigation }) => {
   useEffect(() => {
     const fetchWorkers = async () => {
       try {
-        const response = await axios.get('http://192.168.1.5:5000/user/worker');
+        const response = await axios.get("http://192.168.1.5:5000/user/worker");
         setWorkers(response.data);
       } catch (error) {
-        console.error('Error fetching workers:', error);
+        console.error("Error fetching workers:", error);
       }
     };
 
@@ -139,11 +164,8 @@ const Login = ({ navigation }) => {
           Lupa Sandi?
         </Text>
       </Div>
-      {/* <Div bottom={0} position="absolute" w="100%" left="45%">
-        <Text fontSize="md" fontWeight="bold" color="#2E3A59">
-          2024
-        </Text>
-      </Div> */}
+
+      <Snackbar ref={snackbarRef} bg="red600" color="white"></Snackbar>
     </Div>
   );
 };
