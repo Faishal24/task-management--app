@@ -3,7 +3,6 @@ import { useRoute } from "@react-navigation/native";
 import { Div, Text } from "react-native-magnus";
 import Greeting from "../components/Greeting";
 import Navbar from "../components/Navbar/Navbar";
-import NavbarBottom from "../components/Navbar/NavbarBottom";
 import Filter from "../components/Filter";
 import Cards from "../components/Card/Cards";
 import Lists from "../components/List/Lists";
@@ -23,7 +22,6 @@ const Home = ({ navigation }) => {
         </Text>
         <Lists navigation={navigation} worker={worker}/>
       </Div>
-      {/* <NavbarBottom navigation={navigation} worker={worker}/> */}
     </Div>
   );
 };
