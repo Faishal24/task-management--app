@@ -88,16 +88,16 @@ const Login = ({ navigation }) => {
   return (
     <Div h="100%" bg="#F2F5FF">
       <Div mt={0} mx={20}>
-        <Div alignItems="center" mt={100} mb={30}>
+        <Div alignItems="center" mt={110} mb={30}>
           <Image
             style={{ width: 100, height: 100, marginBottom: 30 }}
             source={logo}
           />
 
-          <Text fontSize={35} fontWeight="400" color="#2E3A59">
+          <Text fontSize={30} fontWeight="400" color="#2E3A59">
             Selamat Datang
           </Text>
-          <Text fontSize={35} fontWeight="400">
+          <Text fontSize={30} fontWeight="400">
             di{" "}
             <Text fontSize={35} color="#008CFF" fontWeight="900">
               TManage

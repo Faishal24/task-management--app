@@ -2,6 +2,7 @@ import React from "react";
 import { Image, TouchableOpacity } from "react-native";
 import { Div, Header, Button, Icon, Text } from "react-native-magnus";
 import { useRoute } from "@react-navigation/native";
+import toCamelCase from "../../utils/camelCase";
 const logo = require("./../../assets/splash2.png");
 
 const Profile = () => {
@@ -42,7 +43,7 @@ const Profile = () => {
         <TouchableOpacity onPress={() => console.log(worker)}>
           <Text fontSize="3xl">{worker.name}</Text>
         </TouchableOpacity>
-        <Text fontSize="xl">{worker.devision}</Text>
+        <Text fontSize="xl">{toCamelCase(worker.devision)}</Text>
       </Div>
 
       <Div p={25}>
@@ -123,7 +124,7 @@ const Profile = () => {
               Jenis Kelamin
             </Text>
             <Text fontSize="lg" fontWeight="bold">
-              {worker.gender}
+              {worker.gender == 'male' ? "Laki-laki" : "Perempuan"}
             </Text>
           </Div>
 

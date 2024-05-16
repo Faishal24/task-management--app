@@ -33,31 +33,6 @@ const Cards = ({ navigation, worker }) => {
       <Div alignItems="center">
         <Div h={1} w="70%" bg="#D8DEF3" mb={10}></Div>
       </Div>
-
-      {/* <Div row justifyContent="center" mb={10}>
-        <Icon
-          name="dot-fill"
-          fontFamily="Octicons"
-          fontSize={16}
-          color="#008CFF"
-          rounded="md"
-        />
-        <Icon
-          name="dot"
-          fontFamily="Octicons"
-          fontSize={16}
-          color="#66717E"
-          rounded="md"
-          mx={5}
-        />
-        <Icon
-          name="dot"
-          fontFamily="Octicons"
-          fontSize={16}
-          color="#66717E"
-          rounded="md"
-        />
-      </Div> */}
     </Div>
   );
 };
