@@ -127,7 +127,7 @@ const Calendar = ({navigation}) => {
         <Text fontSize={30} fontWeight="900" pb={30}>Tugas</Text>
         <List title="Laporan" date="2 hari lalu" />
       </Div>
-      <NavbarBottom navigation={navigation} worker={worker}/>
+      {/* <NavbarBottom navigation={navigation} worker={worker}/> */}
     </Div>
   );
 };

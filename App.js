@@ -10,6 +10,7 @@ import Login from "./src/Pages/Login";
 import Task from "./src/Pages/Task";
 import Profile from "./src/Pages/Profile";
 import Setting from "./src/Pages/Setting";
+import Template from "./src/Template";
 
 const Stack = createNativeStackNavigator()
 
@@ -24,6 +25,7 @@ export default function App() {
       <NavigationContainer>
         <Stack.Navigator screenOptions={{headerShown: false}}>
           <Stack.Screen name="Login" component={Login}/>
+          <Stack.Screen name="Template" component={Template}/>
           <Stack.Screen name="Home" component={Home}/>
           <Stack.Screen name="Calendar" component={Calendar}/>
           <Stack.Screen name="Task" component={Task}/>

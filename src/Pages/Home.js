@@ -23,7 +23,7 @@ const Home = ({ navigation }) => {
         </Text>
         <Lists navigation={navigation} worker={worker}/>
       </Div>
-      <NavbarBottom navigation={navigation} worker={worker}/>
+      {/* <NavbarBottom navigation={navigation} worker={worker}/> */}
     </Div>
   );
 };

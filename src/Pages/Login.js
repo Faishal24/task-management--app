@@ -43,7 +43,7 @@ const Login = ({ navigation }) => {
         const worker = response.data;
 
         // Menavigasi ke halaman Home dengan data worker yang ditemukan
-        navigation.navigate("Home", { worker });
+        navigation.navigate("Template", { worker });
         console.log(worker);
       } else {
         if (snackbarRef.current) {
