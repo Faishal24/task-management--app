@@ -1,7 +1,6 @@
 // Card.js
 import React from "react";
 import { Div, Text, Icon } from "react-native-magnus";
-import { LinearGradient } from "expo-linear-gradient";
 
 const Card = ({ title, description, date, opacity }) => {
   return (

@@ -38,7 +38,7 @@ const Filter = ({ navigation, worker }) => {
           >
             <Text
               color="#2E3A59"
-              fontWeight={activeFilter === "Berjalan" ? "900" : "normal"}
+              fontWeight={activeFilter === "Diserahkan" ? "900" : "normal"}
             >
               Diserahkan
             </Text>
