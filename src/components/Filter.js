@@ -29,9 +29,9 @@ const Filter = ({ navigation, worker }) => {
           </Div>
         </TouchableOpacity>
 
-        <TouchableOpacity onPress={() => handleFilterChange("Berjalan")}>
+        <TouchableOpacity onPress={() => handleFilterChange("Diserahkan")}>
           <Div
-            bg={activeFilter === "Berjalan" ? "#D8DEF3" : "#FFFFFF"}
+            bg={activeFilter === "Diserahkan" ? "#D8DEF3" : "#FFFFFF"}
             px={25}
             py={15}
             rounded={50}
@@ -40,7 +40,7 @@ const Filter = ({ navigation, worker }) => {
               color="#2E3A59"
               fontWeight={activeFilter === "Berjalan" ? "900" : "normal"}
             >
-              Berjalan
+              Diserahkan
             </Text>
           </Div>
         </TouchableOpacity>
