@@ -59,7 +59,7 @@ const CalendarWeek = ({ selectedDate, onSelectDate }) => {
   );
 };
 
-const Calendar = () => {
+const Calendar = ({ navigation }) => {
   const route = useRoute();
   const { worker } = route.params;
 
@@ -134,14 +134,18 @@ const Calendar = () => {
           <Text>Tidak ada item</Text>
         ) : (
           tasks.map((task) => (
-            <List
-              key={task.id}
-              title={toCamelCase(task.description)
-                .split(" ")
-                .slice(0, 2)
-                .join(" ")}
-              date={task.createdAt}
-            />
+            <TouchableOpacity
+              onPress={() => navigation.navigate("Task", { task })}
+            >
+              <List
+                key={task.id}
+                title={toCamelCase(task.description)
+                  .split(" ")
+                  .slice(0, 2)
+                  .join(" ")}
+                date={task.createdAt}
+              />
+            </TouchableOpacity>
           ))
         )}
       </Div>

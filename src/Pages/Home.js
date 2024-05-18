@@ -4,7 +4,6 @@ import { Div, Text } from "react-native-magnus";
 import Greeting from "../components/Greeting";
 import Navbar from "../components/Navbar/Navbar";
 import Filter from "../components/Filter";
-import Cards from "../components/Card/Cards";
 import Lists from "../components/List/Lists";
 
 const Home = ({ navigation }) => {

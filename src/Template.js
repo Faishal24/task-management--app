@@ -16,7 +16,7 @@ const Template = ({navigation}) => {
       case "Home":
         return <Home worker={worker} navigation={navigation}/>;
       case "Calendar":
-        return <Calendar />;
+        return <Calendar navigation={navigation}/>;
       case "Setting":
         return <Setting worker={worker} navigation={navigation}/>;
       default:
