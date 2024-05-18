@@ -1,11 +1,85 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { useRoute } from "@react-navigation/native";
 import { Div, Text, Header, Button, Icon } from "react-native-magnus";
 import List from "../components/List/List";
+import toCamelCase from "../../utils/camelCase";
+import { format, addDays, startOfWeek } from "date-fns";
+import { TouchableOpacity } from "react-native";
 
-const Calendar = ({navigation}) => {
+const CalendarWeek = ({ selectedDate, onSelectDate }) => {
+  const today = new Date();
+  const start = startOfWeek(today, { weekStartsOn: 0 });
+
+  const weekDays = [...Array(7)].map((_, index) => addDays(start, index));
+
+  return (
+    <Div row justifyContent="space-around">
+      {weekDays.map((day) => (
+        <TouchableOpacity key={day} onPress={() => onSelectDate(day)}>
+          <Div
+            w={45}
+            h={55}
+            mt={20}
+            rounded={20}
+            alignItems="center"
+            justifyContent="center"
+            bg={
+              selectedDate &&
+              format(day, "d-M-yyyy") === format(selectedDate, "d-M-yyyy")
+                ? "#D8DEF3"
+                : "white"
+            }
+          >
+            <Text
+              color={
+                selectedDate &&
+                format(day, "d-M-yyyy") === format(selectedDate, "d-M-yyyy")
+                  ? "#1365bd"
+                  : "#2E3A59"
+              }
+              fontWeight="900"
+            >
+              {format(day, "eee")}
+            </Text>
+            <Text
+              color={
+                selectedDate &&
+                format(day, "d-M-yyyy") === format(selectedDate, "d-M-yyyy")
+                  ? "#1365bd"
+                  : "#2E3A59"
+              }
+              fontWeight="300"
+            >
+              {format(day, "d")}
+            </Text>
+          </Div>
+        </TouchableOpacity>
+      ))}
+    </Div>
+  );
+};
+
+const Calendar = () => {
   const route = useRoute();
-  const {worker} = route.params
+  const { worker } = route.params;
+
+  const [selectedDate, setSelectedDate] = useState(() => {
+    const today = new Date();
+    return today;
+  });
+  const [tasks, setTasks] = useState([]);
+
+  useEffect(() => {
+    if (selectedDate) {
+      const formattedDate = format(selectedDate, "d-M-yyyy");
+      const tasksForDate = worker.tasks.filter(
+        (task) => task.createdAt === formattedDate
+      );
+      setTasks(tasksForDate);
+    } else {
+      setTasks(worker.tasks);
+    }
+  }, [selectedDate, worker.tasks]);
 
   return (
     <Div bg="#F2F5FF" h="100%">
@@ -46,85 +120,30 @@ const Calendar = ({navigation}) => {
           <Text fontSize={35} fontWeight="900" color="#2E3A59">
             Mei 2024
           </Text>
-
-          <Div row justifyContent="space-around" mt={20}>
-            <Div
-              w={50}
-              h={60}
-              rounded={20}
-              alignItems="center"
-              justifyContent="center"
-            >
-              <Text>Mo</Text>
-              <Text>3</Text>
-            </Div>
-            <Div
-              w={50}
-              h={60}
-              rounded={20}
-              alignItems="center"
-              justifyContent="center"
-            >
-              <Text>Tu</Text>
-              <Text>3</Text>
-            </Div>
-            <Div
-              bg="#99b5ff"
-              w={50}
-              h={60}
-              rounded={20}
-              alignItems="center"
-              justifyContent="center"
-            >
-              <Text>We</Text>
-              <Text>3</Text>
-            </Div>
-            <Div
-              w={50}
-              h={60}
-              rounded={20}
-              alignItems="center"
-              justifyContent="center"
-            >
-              <Text>Th</Text>
-              <Text>3</Text>
-            </Div>
-            <Div
-              w={50}
-              h={60}
-              rounded={20}
-              alignItems="center"
-              justifyContent="center"
-            >
-              <Text>Fr</Text>
-              <Text>3</Text>
-            </Div>
-            <Div
-              w={50}
-              h={60}
-              rounded={20}
-              alignItems="center"
-              justifyContent="center"
-            >
-              <Text>Sa</Text>
-              <Text>3</Text>
-            </Div>
-            <Div
-              w={50}
-              h={60}
-              rounded={20}
-              alignItems="center"
-              justifyContent="center"
-            >
-              <Text>Su</Text>
-              <Text>3</Text>
-            </Div>
-          </Div>
+          <CalendarWeek
+            selectedDate={selectedDate}
+            onSelectDate={setSelectedDate}
+          />
         </Div>
       </Div>
       <Div pt={30} px={20}>
-        <Text fontSize={30} fontWeight="900" pb={30}>Tugas</Text>
-        <List title="Laporan" date="2 hari lalu" />
+        <Text fontSize={30} fontWeight="900" pb={30}>
+          Tugas
+        </Text>
+        {tasks.length === 0 ? (
+          <Text>Tidak ada item</Text>
+        ) : (
+          tasks.map((task) => (
+            <List
+              key={task.id}
+              title={toCamelCase(task.description)
+                .split(" ")
+                .slice(0, 2)
+                .join(" ")}
+              date={task.createdAt}
+            />
+          ))
+        )}
       </Div>
     </Div>
   );
