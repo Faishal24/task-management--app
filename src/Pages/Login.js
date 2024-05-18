@@ -75,7 +75,8 @@ const Login = ({ navigation }) => {
   useEffect(() => {
     const fetchWorkers = async () => {
       try {
-        const response = await axios.get("http://192.168.1.3:5000/user/worker");
+        const response = 
+          await axios.get("http://192.168.1.3:5000/user/worker");
         setWorkers(response.data);
       } catch (error) {
         console.error("Error fetching workers:", error);

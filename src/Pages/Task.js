@@ -1,12 +1,72 @@
-import React from "react";
+import React, { useState } from "react";
 import { useRoute } from "@react-navigation/native";
 import { Div, Text, Icon, Header, Button } from "react-native-magnus";
-import { StatusBar } from "react-native";
-import dateFix from "../../utils/dateFix"
+import { StatusBar, Alert, TouchableOpacity } from "react-native";
+import * as ImagePicker from "expo-image-picker";
+import dateFix from "../../utils/dateFix";
 import formatDate from "../../utils/formatDate";
+import axios from "axios";
 
 const Task = () => {
-  const {task} = useRoute().params
+  const { task } = useRoute().params;
+  const [selectedImage, setSelectedImage] = useState(null);
+
+  const pickImage = async () => {
+    let permissionResult =
+      await ImagePicker.requestMediaLibraryPermissionsAsync();
+
+    if (permissionResult.granted === false) {
+      Alert.alert(
+        "Izin ditolak",
+        "Anda harus memberikan izin untuk mengakses galeri."
+      );
+      return;
+    }
+
+    let result = await ImagePicker.launchImageLibraryAsync({
+      mediaTypes: ImagePicker.MediaTypeOptions.Images,
+      quality: 1,
+    });
+
+    console.log(result);
+
+    if (!result.canceled) {
+      setSelectedImage(result.assets[0].uri);
+    }
+  };
+
+  const uploadImage = async () => {
+    if (!selectedImage) {
+      Alert.alert("Error", "Pilih gambar terlebih dahulu");
+      return;
+    }
+
+    try {
+      const formData = new FormData();
+      formData.append("uploadFile", {
+        uri: selectedImage,
+        type: "image/jpeg", // adjust according to the image type
+        name: "image.jpg",
+      });
+
+      const response = await axios.put(
+        `http://192.168.1.3:5000/tasks/${task.taskId}/upload`,
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
+
+      console.log("Upload successful:", response.data.message);
+      setSelectedImage(null);
+    } catch (error) {
+      console.error("Error uploading image", error);
+      Alert.alert("Error", "Gagal mengunggah gambar");
+    }
+  };
+
   return (
     <Div>
       <StatusBar barStyle="dark-content" backgroundColor="#008CFF" />
@@ -83,17 +143,27 @@ const Task = () => {
           <Text fontSize="xl" color="#b3b8c9" mb={10}>
             File
           </Text>
-          <Div
+          <TouchableOpacity onPress={pickImage}>
+            <Div
+              w="100%"
+              h={100}
+              bg="#F2F5FF"
+              rounded={20}
+              alignItems="center"
+              justifyContent="center"
+            >
+              <Text>Klik untuk unggah file sebagai bukti</Text>
+            </Div>
+          </TouchableOpacity>
+          <Button
+            mt={20}
             w="100%"
-            h={100}
-            bg="#F2F5FF"
-            rounded={20}
-            alignItems="center"
-            justifyContent="center"
+            h={50}
+            rounded={100}
+            bg="#008CFF"
+            fontWeight="900"
+            onPress={uploadImage}
           >
-            <Text>Klik untuk unggah file sebagai bukti</Text>
-          </Div>
-          <Button mt={20} w="100%" h={50} rounded={100} bg="#008CFF" fontWeight="900">
             Unggah File
           </Button>
         </Div>
