@@ -11,6 +11,7 @@ import Task from "./src/Pages/Task";
 import Profile from "./src/Pages/Profile";
 import Setting from "./src/Pages/Setting";
 import Template from "./src/Template";
+import Register from "./src/Pages/Register";
 
 const Stack = createNativeStackNavigator()
 
@@ -29,6 +30,7 @@ export default function App() {
           <Stack.Screen name="Home" component={Home}/>
           <Stack.Screen name="Calendar" component={Calendar}/>
           <Stack.Screen name="Task" component={Task}/>
+          <Stack.Screen name="Register" component={Register}/>
           <Stack.Screen name="Profile" component={Profile}/>
           <Stack.Screen name="Setting" component={Setting}/>
         </Stack.Navigator>

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Image } from "react-native";
+import { Image, TouchableOpacity } from "react-native";
 import {
   Div,
   Text,
@@ -75,8 +75,7 @@ const Login = ({ navigation }) => {
   useEffect(() => {
     const fetchWorkers = async () => {
       try {
-        const response = 
-          await axios.get("http://192.168.1.3:5000/user/worker");
+        const response = await axios.get("http://192.168.1.3:5000/user/worker");
         setWorkers(response.data);
       } catch (error) {
         console.error("Error fetching workers:", error);
@@ -154,16 +153,18 @@ const Login = ({ navigation }) => {
           Masuk
         </Button>
 
-        <Text
-          my={10}
-          fontSize="lg"
-          fontWeight="bold"
-          color="#008CFF"
-          textDecorLine="underline"
-          textAlign="center"
-        >
-          Lupa Sandi?
-        </Text>
+        <TouchableOpacity onPress={() => navigation.navigate('Register')}>
+          <Text
+            my={10}
+            fontSize="lg"
+            fontWeight="bold"
+            color="#008CFF"
+            textDecorLine="underline"
+            textAlign="center"
+          >
+            Belum Punya Akun?
+          </Text>
+        </TouchableOpacity>
       </Div>
 
       <Snackbar ref={snackbarRef} bg="red600" color="white"></Snackbar>
