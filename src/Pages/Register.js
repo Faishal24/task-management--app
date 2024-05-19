@@ -8,7 +8,6 @@ const logo = require("./../../assets/logo.png");
 
 const Register = ({ navigation }) => {
   const snackbarRef = React.createRef();
-  const [selectedDevision, setSelectedDevision] = useState();
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
   const [devision, setDevision] = useState("");
@@ -32,14 +31,32 @@ const Register = ({ navigation }) => {
   }, [name, devision]);
 
   const handleSubmit = () => {
-    axios
-      .post("http://192.168.1.3:5000/user/worker", form)
-      .then((res) => console.log(res.data))
-      .catch((err) => console.log(err));
-    axios
-      .post("http://192.168.1.3:5000/add", form2)
-      .then((res) => console.log(res.data))
-      .catch((err) => console.log(err));
+    if (
+      name === "" ||
+      password === "" ||
+      (devision === "" && snackbarRef.current)
+    ) {
+      snackbarRef.current.show("Isi semua kolom yang dibutuhkan!", {
+        duration: 2000,
+        suffix: (
+          <Icon
+            name="closecircle"
+            color="white"
+            fontSize="md"
+            fontFamily="AntDesign"
+          />
+        ),
+      });
+    }
+    console.log("Form submitted:", { name, password, devision });
+    // axios
+    //   .post("http://192.168.1.3:5000/user/worker", form)
+    //   .then((res) => console.log(res.data))
+    //   .catch((err) => console.log(err));
+    // axios
+    //   .post("http://192.168.1.3:5000/add", form2)
+    //   .then((res) => console.log(res.data))
+    //   .catch((err) => console.log(err));
   };
 
   return (
@@ -47,7 +64,7 @@ const Register = ({ navigation }) => {
       <Div mt={0} mx={20}>
         <Div alignItems="center" mt={110} mb={30}>
           <Image
-            style={{ width: 50, height: 50, marginBottom: 15 }}
+            style={{ width: 100, height: 100, marginBottom: 15 }}
             source={logo}
           />
 
@@ -96,7 +113,7 @@ const Register = ({ navigation }) => {
         <Div bg="white" rounded={10} mb={20}>
           <Picker
             itemStyle={{ backgroundColor: "grey", color: "blue" }}
-            selectedValue={selectedDevision}
+            selectedValue={devision}
             onValueChange={(itemValue) => setDevision(itemValue)}
           >
             <Picker.Item label="Pemasaran" value="pemasaran" />

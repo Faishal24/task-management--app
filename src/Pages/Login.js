@@ -65,10 +65,6 @@ const Login = ({ navigation }) => {
     }
   };
 
-  const select = () => {
-    worker.map;
-  };
-
   ///////////////
   // useEffect //
   ///////////////
