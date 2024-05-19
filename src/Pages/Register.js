@@ -1,16 +1,46 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Image, TouchableOpacity } from "react-native";
 import { Div, Text, Icon, Input, Button, Snackbar } from "react-native-magnus";
 import { Picker } from "@react-native-picker/picker";
+import axios from "axios";
 
 const logo = require("./../../assets/logo.png");
 
 const Register = ({ navigation }) => {
   const snackbarRef = React.createRef();
   const [selectedDevision, setSelectedDevision] = useState();
-  const [name, setName] = useState("")
-  const [password, setPassword] = useState("")
-  const [devision, setDevision] = useState("")
+  const [name, setName] = useState("");
+  const [password, setPassword] = useState("");
+  const [devision, setDevision] = useState("");
+
+  const [form, setForm] = useState({
+    name: "",
+    password: "",
+  });
+
+  const [form2, setForm2] = useState({
+    name: "",
+    devision: "",
+  });
+
+  useEffect(() => {
+    setForm({ name, password });
+  }, [name, password]);
+
+  useEffect(() => {
+    setForm2({ name, devision });
+  }, [name, devision]);
+
+  const handleSubmit = () => {
+    axios
+      .post("http://192.168.1.3:5000/user/worker", form)
+      .then((res) => console.log(res.data))
+      .catch((err) => console.log(err));
+    axios
+      .post("http://192.168.1.3:5000/add", form2)
+      .then((res) => console.log(res.data))
+      .catch((err) => console.log(err));
+  };
 
   return (
     <Div h="100%" bg="#F2F5FF">
@@ -88,7 +118,7 @@ const Register = ({ navigation }) => {
           rounded={100}
           bg="#008CFF"
           fontWeight="900"
-          onPress={() => console.log(name, password, devision)}
+          onPress={() => handleSubmit()}
         >
           Daftar
         </Button>
