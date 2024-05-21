@@ -88,7 +88,7 @@ const Setting = ({ navigation }) => {
                 name="perm-identity"
                 fontFamily="MaterialIcons"
                 fontSize={25}
-                color="red600"
+                color="#008CFF"
               />
               <Div justifyContent="center" ml={10}>
                 <Text fontSize="lg">Lengkapi Identitas</Text>
