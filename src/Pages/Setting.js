@@ -70,10 +70,7 @@ const Setting = ({ navigation }) => {
           </Div>
         </TouchableOpacity>
 
-        {/*  */}
-        <TouchableOpacity
-          onPress={() => navigation.navigate("Login")}
-        >
+        <TouchableOpacity>
           <Div
             p={15}
             bg="#D8DEF3"
@@ -82,7 +79,40 @@ const Setting = ({ navigation }) => {
             borderColor="#b3b8c9"
             row
             justifyContent="space-between"
-            my={20}
+            mt={20}
+          >
+            <Div row>
+              <Icon
+                name="perm-identity"
+                fontFamily="MaterialIcons"
+                fontSize={25}
+                color="red600"
+              />
+              <Div justifyContent="center" ml={10}>
+                <Text fontSize="lg">Lengkapi Identitas</Text>
+              </Div>
+            </Div>
+
+            <Icon
+              name="keyboard-arrow-right"
+              fontFamily="MaterialIcons"
+              fontSize={25}
+              color="#2E3A59"
+            />
+          </Div>
+        </TouchableOpacity>
+
+        {/*  */}
+        <TouchableOpacity onPress={() => navigation.navigate("Login")}>
+          <Div
+            p={15}
+            bg="#D8DEF3"
+            rounded={10}
+            borderWidth={1}
+            borderColor="#b3b8c9"
+            row
+            justifyContent="space-between"
+            mt={20}
           >
             <Div row>
               <Icon
@@ -91,9 +121,9 @@ const Setting = ({ navigation }) => {
                 fontSize={25}
                 color="red600"
               />
-                <Div justifyContent="center" ml={10}>
-                  <Text fontSize="lg">Logout</Text>
-                </Div>
+              <Div justifyContent="center" ml={10}>
+                <Text fontSize="lg">Logout</Text>
+              </Div>
             </Div>
 
             <Icon
