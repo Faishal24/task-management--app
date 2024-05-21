@@ -27,7 +27,7 @@ const Setting = ({ navigation }) => {
           </Button>
         }
       >
-        Setting
+        Pengaturan
       </Header>
 
       <Div p={25}>
@@ -70,7 +70,9 @@ const Setting = ({ navigation }) => {
           </Div>
         </TouchableOpacity>
 
-        <TouchableOpacity>
+        <TouchableOpacity
+          onPress={() => navigation.navigate("Identity", { worker })}
+        >
           <Div
             p={15}
             bg="#D8DEF3"

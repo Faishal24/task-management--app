@@ -12,6 +12,7 @@ import Profile from "./src/Pages/Profile";
 import Setting from "./src/Pages/Setting";
 import Template from "./src/Template";
 import Register from "./src/Pages/Register";
+import Identity from "./src/Pages/Identity";
 
 const Stack = createNativeStackNavigator()
 
@@ -33,6 +34,7 @@ export default function App() {
           <Stack.Screen name="Register" component={Register}/>
           <Stack.Screen name="Profile" component={Profile}/>
           <Stack.Screen name="Setting" component={Setting}/>
+          <Stack.Screen name="Identity" component={Identity}/>
         </Stack.Navigator>
       </NavigationContainer>
     </ThemeProvider>

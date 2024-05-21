@@ -49,14 +49,14 @@ const Register = ({ navigation }) => {
       });
     } else {
       console.log("Form submitted:", { name, password, devision });
-      // axios
-      //   .post("http://192.168.1.3:5000/user/worker", form)
-      //   .then((res) => console.log(res.data))
-      //   .catch((err) => console.log(err));
-      // axios
-      //   .post("http://192.168.1.3:5000/add", form2)
-      //   .then((res) => console.log(res.data))
-      //   .catch((err) => console.log(err));
+      axios
+        .post("http://192.168.1.3:5000/user/worker", form)
+        .then((res) => console.log(res.data))
+        .catch((err) => console.log(err));
+      axios
+        .post("http://192.168.1.3:5000/add", form2)
+        .then((res) => console.log(res.data))
+        .catch((err) => console.log(err));
       navigation.navigate("Login");
     }
   };

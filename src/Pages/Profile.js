@@ -27,7 +27,7 @@ const Profile = () => {
           </Button>
         }
       >
-        Profile
+        Profil
       </Header>
 
       <Div px={25} py={5} alignItems="center">
