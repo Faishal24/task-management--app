@@ -10,6 +10,7 @@ import axios from "axios";
 const Task = () => {
   const { task } = useRoute().params;
   const [selectedImage, setSelectedImage] = useState(null);
+  const ip = process.env.EXPO_PUBLIC_SERVER_ADDR
 
   const pickImage = async () => {
     let permissionResult =
@@ -50,7 +51,7 @@ const Task = () => {
       });
 
       const response = await axios.put(
-        `http://192.168.1.3:5000/tasks/${task.taskId}/upload`,
+        `http://${ip}/tasks/${task.taskId}/upload`,
         formData,
         {
           headers: {

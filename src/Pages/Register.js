@@ -7,6 +7,7 @@ import axios from "axios";
 const logo = require("./../../assets/logo.png");
 
 const Register = ({ navigation }) => {
+  const ip = process.env.EXPO_PUBLIC_SERVER_ADDR
   const snackbarRef = React.createRef();
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
@@ -50,11 +51,11 @@ const Register = ({ navigation }) => {
     } else {
       console.log("Form submitted:", { name, password, devision });
       axios
-        .post("http://192.168.1.3:5000/user/worker", form)
+        .post(`http://${ip}/user/worker`, form)
         .then((res) => console.log(res.data))
         .catch((err) => console.log(err));
       axios
-        .post("http://192.168.1.3:5000/add", form2)
+        .post(`http://${ip}/add`, form2)
         .then((res) => console.log(res.data))
         .catch((err) => console.log(err));
       navigation.navigate("Login");

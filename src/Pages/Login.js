@@ -15,6 +15,7 @@ const logo = require("./../../assets/logo.png");
 const snackbarRef = React.createRef();
 
 const Login = ({ navigation }) => {
+  const ip = process.env.EXPO_PUBLIC_SERVER_ADDR
   const [workers, setWorkers] = useState([]);
   const [form, setForm] = useState({
     name: "",
@@ -38,7 +39,7 @@ const Login = ({ navigation }) => {
       if (user) {
         // Jika login berhasil, fetch data dari /get menggunakan nama user
         const response = await axios.get(
-          `http://192.168.1.3:5000/get/${user.name}`
+          `http://${ip}/get/${user.name}`
         );
         const worker = response.data;
 
@@ -71,7 +72,9 @@ const Login = ({ navigation }) => {
   useEffect(() => {
     const fetchWorkers = async () => {
       try {
-        const response = await axios.get("http://192.168.1.3:5000/user/worker");
+        const response = await axios.get(
+          `http://${ip}/user/worker`
+        );
         setWorkers(response.data);
       } catch (error) {
         console.error("Error fetching workers:", error);
@@ -149,7 +152,7 @@ const Login = ({ navigation }) => {
           Masuk
         </Button>
 
-        <TouchableOpacity onPress={() => navigation.navigate('Register')}>
+        <TouchableOpacity onPress={() => navigation.navigate("Register")}>
           <Text
             my={10}
             fontSize="lg"

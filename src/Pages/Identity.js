@@ -5,6 +5,7 @@ import { Picker } from "@react-native-picker/picker";
 import axios from "axios";
 
 const Identity = () => {
+  const ip = process.env.EXPO_PUBLIC_SERVER_ADDR
   const route = useRoute();
   const { worker } = route.params;
 
@@ -57,7 +58,7 @@ const Identity = () => {
       );
     // console.log(cleanedForm);
 
-    axios.put(`http://192.168.1.3:5000/update/user/${worker._id}`, filteredForm)
+    axios.put(`http://${ip}/update/user/${worker._id}`, filteredForm)
     .then((res) => console.log(res))
     .catch((err) => console.log(err))
   };
