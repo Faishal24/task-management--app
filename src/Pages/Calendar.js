@@ -25,7 +25,7 @@ const CalendarWeek = ({ selectedDate, onSelectDate }) => {
             justifyContent="center"
             bg={
               selectedDate &&
-              format(day, "d-M-yyyy") === format(selectedDate, "d-M-yyyy")
+              format(day, "dd-MM-yyyy") === format(selectedDate, "dd-MM-yyyy")
                 ? "#D8DEF3"
                 : "white"
             }
@@ -33,7 +33,7 @@ const CalendarWeek = ({ selectedDate, onSelectDate }) => {
             <Text
               color={
                 selectedDate &&
-                format(day, "d-M-yyyy") === format(selectedDate, "d-M-yyyy")
+                format(day, "dd-MM-yyyy") === format(selectedDate, "dd-MM-yyyy")
                   ? "#1365bd"
                   : "#2E3A59"
               }
@@ -44,7 +44,7 @@ const CalendarWeek = ({ selectedDate, onSelectDate }) => {
             <Text
               color={
                 selectedDate &&
-                format(day, "d-M-yyyy") === format(selectedDate, "d-M-yyyy")
+                format(day, "dd-MM-yyyy") === format(selectedDate, "dd-MM-yyyy")
                   ? "#1365bd"
                   : "#2E3A59"
               }
@@ -71,7 +71,7 @@ const Calendar = ({ navigation }) => {
 
   useEffect(() => {
     if (selectedDate) {
-      const formattedDate = format(selectedDate, "d-M-yyyy");
+      const formattedDate = format(selectedDate, "dd-MM-yyyy");
       const tasksForDate = worker.tasks.filter(
         (task) => task.createdAt === formattedDate
       );

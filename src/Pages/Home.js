@@ -17,7 +17,7 @@ const Home = ({ navigation }) => {
         <Filter navigation={navigation} worker={worker}/>
         
         <Text fontSize="3xl" fontWeight="900" mb={10}>
-          Tugas Terbaru
+          Tenggat Waktu Terdekat
         </Text>
         <Lists navigation={navigation} worker={worker}/>
       </Div>

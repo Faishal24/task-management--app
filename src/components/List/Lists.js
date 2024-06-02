@@ -23,18 +23,18 @@ const Lists = ({ navigation, worker }) => {
           const numericMonth = parseInt(month - 1, 10);
           const numericYear = parseInt(year, 10);
 
-          const fns = formatDistanceToNow(new Date("2024", "4", "11"),{
+          const fns = formatDistanceToNow(new Date(numericYear, numericMonth, numericDay),{
             addSuffix: true,
           });
 
-          const waktu = fns.split(' ')[0]
+          const waktu = fns.split(' ')[1]
           return (
             <TouchableOpacity onPress={() => navigation.navigate("Task", { task })}>
               <List
                 title={toCamelCase(
                   (task.description).split(" ").slice(0, 2).join(" ")
                 )}
-                date={`${waktu} hari yang lalu`}
+                date={`${waktu} hari yang akan datang`}
               />
             </TouchableOpacity>
           );
