@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import { Button, Icon, Div, Header, Input, Text } from "react-native-magnus";
 import { useRoute } from "@react-navigation/native";
+import { View } from "react-native";
 import { Picker } from "@react-native-picker/picker";
 import axios from "axios";
 
 const Identity = () => {
-  const ip = process.env.EXPO_PUBLIC_SERVER_ADDR
+  const ip = process.env.EXPO_PUBLIC_SERVER_ADDR;
   const route = useRoute();
   const { worker } = route.params;
 
@@ -54,13 +55,16 @@ const Identity = () => {
 
   const handleSave = () => {
     const filteredForm = Object.fromEntries(
-        Object.entries(form).filter(([key, value]) => value && value !== "undefined")
-      );
+      Object.entries(form).filter(
+        ([key, value]) => value && value !== "undefined"
+      )
+    );
     // console.log(cleanedForm);
 
-    axios.put(`http://${ip}/update/user/${worker._id}`, filteredForm)
-    .then((res) => console.log(res))
-    .catch((err) => console.log(err))
+    axios
+      .put(`http://${ip}/update/user/${worker._id}`, filteredForm)
+      .then((res) => console.log(res))
+      .catch((err) => console.log(err));
   };
 
   return (
@@ -87,24 +91,28 @@ const Identity = () => {
       <Div mx={20}>
         {Object.entries(form).map(([key, value]) =>
           key !== "gender" ? (
-            <Input
-              placeholder={value === "undefined" ? defaultPlaceholder[key] : value}
-              p={10}
-              focusBorderColor="#008CFF"
-              prefix={
-                <Icon
-                  name={iconConfig[key].name}
-                  color="gray900"
-                  fontFamily={iconConfig[key].fontFamily}
-                  fontSize={17}
-                />
-              }
-              borderColor="#D8DEF3"
-              rounded={10}
-              mb={20}
-              onChangeText={(text) => handleChange(key, text)}
-              value={value === "undefined" ? defaultValue[key] : value}
-            />
+            <View key={key}>
+              <Input
+                placeholder={
+                  value === "undefined" ? defaultPlaceholder[key] : value
+                }
+                p={10}
+                focusBorderColor="#008CFF"
+                prefix={
+                  <Icon
+                    name={iconConfig[key].name}
+                    color="gray900"
+                    fontFamily={iconConfig[key].fontFamily}
+                    fontSize={17}
+                  />
+                }
+                borderColor="#D8DEF3"
+                rounded={10}
+                mb={20}
+                onChangeText={(text) => handleChange(key, text)}
+                value={value === "undefined" ? defaultValue[key] : value}
+              />
+            </View>
           ) : (
             <Div
               bg="white"
@@ -113,14 +121,16 @@ const Identity = () => {
               borderColor="#D8DEF3"
               borderWidth={1}
             >
-              <Picker
-                itemStyle={{ backgroundColor: "grey", color: "blue" }}
-                onValueChange={(item) => handleChange(key, item)}
-                selectedValue={value === "undefined" ? "" : value}
-              >
-                <Picker.Item label="Laki-laki" value="male" />
-                <Picker.Item label="Perempuan" value="female" />
-              </Picker>
+              <View key={key}>
+                <Picker
+                  itemStyle={{ backgroundColor: "grey", color: "blue" }}
+                  onValueChange={(item) => handleChange(key, item)}
+                  selectedValue={value === "undefined" ? "" : value}
+                >
+                  <Picker.Item label="Laki-laki" value="male" />
+                  <Picker.Item label="Perempuan" value="female" />
+                </Picker>
+              </View>
             </Div>
           )
         )}

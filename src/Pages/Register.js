@@ -10,30 +10,33 @@ const Register = ({ navigation }) => {
   const ip = process.env.EXPO_PUBLIC_SERVER_ADDR
   const snackbarRef = React.createRef();
   const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [devision, setDevision] = useState("pemasaran");
 
   const [form, setForm] = useState({
-    name: "",
+    email: "",
     password: "",
   });
 
   const [form2, setForm2] = useState({
     name: "",
+    email: "",
     devision: "",
   });
 
   useEffect(() => {
-    setForm({ name, password });
-  }, [name, password]);
+    setForm({ email, password });
+  }, [email, password]);
 
   useEffect(() => {
-    setForm2({ name, devision });
-  }, [name, devision]);
+    setForm2({ name, email, devision });
+  }, [name, email, devision]);
 
   const handleSubmit = () => {
     if (
       name === "" ||
+      email === "" ||
       password === "" ||
       (devision === "" && snackbarRef.current)
     ) {
@@ -49,7 +52,7 @@ const Register = ({ navigation }) => {
         ),
       });
     } else {
-      console.log("Form submitted:", { name, password, devision });
+      console.log("Form submitted:", { name, email, password, devision });
       axios
         .post(`http://${ip}/user/worker`, form)
         .then((res) => console.log(res.data))
@@ -65,7 +68,7 @@ const Register = ({ navigation }) => {
   return (
     <Div h="100%" bg="#F2F5FF">
       <Div mt={0} mx={20}>
-        <Div alignItems="center" mt={110} mb={30}>
+        <Div alignItems="center" mt={90} mb={30}>
           <Image
             style={{ width: 100, height: 100, marginBottom: 15 }}
             source={logo}
@@ -93,6 +96,24 @@ const Register = ({ navigation }) => {
           mb={20}
           onChangeText={(text) => setName(text)}
           value={name}
+        />
+        <Input
+          placeholder="Email"
+          p={10}
+          focusBorderColor="#008CFF"
+          prefix={
+            <Icon
+              name="mail"
+              color="gray900"
+              fontFamily="Feather"
+              fontSize={17}
+            />
+          }
+          borderColor="#F2F5FF"
+          rounded={10}
+          mb={20}
+          onChangeText={(text) => setEmail(text)}
+          value={email}
         />
         <Input
           placeholder="Kata Sandi"

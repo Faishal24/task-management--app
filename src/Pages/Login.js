@@ -18,7 +18,7 @@ const Login = ({ navigation }) => {
   const ip = process.env.EXPO_PUBLIC_SERVER_ADDR
   const [workers, setWorkers] = useState([]);
   const [form, setForm] = useState({
-    name: "",
+    email: "",
     password: "",
   });
 
@@ -33,13 +33,13 @@ const Login = ({ navigation }) => {
     try {
       const user = workers.find(
         (worker) =>
-          worker.name === form.name && worker.password === form.password
+          worker.email === form.email && worker.password === form.password
       );
 
       if (user) {
         // Jika login berhasil, fetch data dari /get menggunakan nama user
         const response = await axios.get(
-          `http://${ip}/get/${user.name}`
+          `http://${ip}/get/${user.email}`
         );
         const worker = response.data;
 
@@ -105,12 +105,12 @@ const Login = ({ navigation }) => {
         </Div>
 
         <Input
-          placeholder="Nama"
+          placeholder="Email"
           p={10}
           focusBorderColor="#008CFF"
           prefix={
             <Icon
-              name="user"
+              name="mail"
               color="gray900"
               fontFamily="Feather"
               fontSize={17}
@@ -119,8 +119,8 @@ const Login = ({ navigation }) => {
           borderColor="#F2F5FF"
           rounded={10}
           mb={20}
-          onChangeText={(text) => handleChange("name", text)}
-          value={form.name}
+          onChangeText={(text) => handleChange("email", text)}
+          value={form.email}
         />
         <Input
           placeholder="Kata Sandi"
