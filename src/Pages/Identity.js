@@ -53,7 +53,7 @@ const Identity = () => {
     email: { name: "mail", fontFamily: "Feather" },
   };
 
-  const handleSave = () => {
+  const handleSave = async () => {
     const filteredForm = Object.fromEntries(
       Object.entries(form).filter(
         ([key, value]) => value && value !== "undefined"

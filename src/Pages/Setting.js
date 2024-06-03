@@ -16,16 +16,6 @@ const Setting = ({ navigation }) => {
         alignment="center"
         shadow={0}
         bg="#F2F5FF"
-        prefix={
-          <Button bg="transparent">
-            <Icon
-              name="arrow-back"
-              fontFamily="Ionicons"
-              fontSize={25}
-              color="#2E3A59"
-            />
-          </Button>
-        }
       >
         Pengaturan
       </Header>

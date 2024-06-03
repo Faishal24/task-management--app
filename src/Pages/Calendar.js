@@ -89,13 +89,13 @@ const Calendar = ({ navigation }) => {
         roundedBottomRight={25}
         shadow="sm"
       >
-        <Header
+        {/* <Header
           p="lg"
           alignment="left"
           shadow={0}
           bg="white"
           prefix={
-            <Button bg="transparent">
+            <Button bg="transparent" onPress={() => navigation.navigate('Home', worker)}>
               <Icon
                 name="arrow-back"
                 fontFamily="Ionicons"
@@ -114,11 +114,11 @@ const Calendar = ({ navigation }) => {
               />
             </Button>
           }
-        ></Header>
+        ></Header> */}
 
         <Div pt={15} px={20} pb={30}>
           <Text fontSize={35} fontWeight="900" color="#2E3A59">
-            Mei 2024
+            {format(selectedDate, "MMMM")}
           </Text>
           <CalendarWeek
             selectedDate={selectedDate}

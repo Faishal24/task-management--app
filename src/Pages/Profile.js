@@ -5,7 +5,7 @@ import { useRoute } from "@react-navigation/native";
 import toCamelCase from "../../utils/camelCase";
 const logo = require("./../../assets/splash2.png");
 
-const Profile = () => {
+const Profile = ({navigation}) => {
   const route = useRoute();
   const { worker } = route.params;
 
@@ -17,7 +17,7 @@ const Profile = () => {
         shadow={0}
         bg="#F2F5FF"
         prefix={
-          <Button bg="transparent">
+          <Button bg="transparent" onPress={() => navigation.goBack()}>
             <Icon
               name="arrow-back"
               fontFamily="Ionicons"

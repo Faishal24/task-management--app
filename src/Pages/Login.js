@@ -15,7 +15,8 @@ const logo = require("./../../assets/logo.png");
 const snackbarRef = React.createRef();
 
 const Login = ({ navigation }) => {
-  const ip = process.env.EXPO_PUBLIC_SERVER_ADDR
+  const ip = process.env.EXPO_PUBLIC_SERVER_ADDR;
+  const [passwordHidden, setPasswordHidden] = useState(true);
   const [workers, setWorkers] = useState([]);
   const [form, setForm] = useState({
     email: "",
@@ -29,6 +30,10 @@ const Login = ({ navigation }) => {
     });
   };
 
+  const handlePasswordVisibility = () => {
+    setPasswordHidden(!passwordHidden);
+  };
+
   const handleLogin = async () => {
     try {
       const user = workers.find(
@@ -38,9 +43,7 @@ const Login = ({ navigation }) => {
 
       if (user) {
         // Jika login berhasil, fetch data dari /get menggunakan nama user
-        const response = await axios.get(
-          `http://${ip}/get/${user.email}`
-        );
+        const response = await axios.get(`http://${ip}/get/${user.email}`);
         const worker = response.data;
 
         // Menavigasi ke halaman Home dengan data worker yang ditemukan
@@ -72,9 +75,7 @@ const Login = ({ navigation }) => {
   useEffect(() => {
     const fetchWorkers = async () => {
       try {
-        const response = await axios.get(
-          `http://${ip}/user/worker`
-        );
+        const response = await axios.get(`http://${ip}/user/worker`);
         setWorkers(response.data);
       } catch (error) {
         console.error("Error fetching workers:", error);
@@ -126,7 +127,7 @@ const Login = ({ navigation }) => {
           placeholder="Kata Sandi"
           p={10}
           focusBorderColor="#008CFF"
-          secureTextEntry
+          secureTextEntry={passwordHidden}
           prefix={
             <Icon
               name="form-textbox-password"
@@ -134,6 +135,17 @@ const Login = ({ navigation }) => {
               fontFamily="MaterialCommunityIcons"
               fontSize={17}
             />
+          }
+          suffix={
+            passwordHidden ? (
+              <TouchableOpacity onPress={handlePasswordVisibility}>
+                <Icon name="eye" color="gray900" fontFamily="Feather" fontSize={17}/>
+              </TouchableOpacity>
+            ) : (
+              <TouchableOpacity onPress={handlePasswordVisibility}>
+                <Icon name="eye-off" color="gray900" fontFamily="Feather" fontSize={17}/>
+              </TouchableOpacity>
+            )
           }
           borderColor="#F2F5FF"
           rounded={10}
