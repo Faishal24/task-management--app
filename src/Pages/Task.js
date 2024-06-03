@@ -1,11 +1,13 @@
 import React, { useState } from "react";
 import { useRoute } from "@react-navigation/native";
-import { Div, Text, Icon, Header, Button } from "react-native-magnus";
+import { Div, Text, Icon, Header, Button, Snackbar } from "react-native-magnus";
 import { StatusBar, Alert, TouchableOpacity } from "react-native";
 import * as ImagePicker from "expo-image-picker";
 import dateFix from "../../utils/dateFix";
 import formatDate from "../../utils/formatDate";
 import axios from "axios";
+
+const snackbarRef = React.createRef();
 
 const Task = () => {
   const { task } = useRoute().params;
@@ -38,7 +40,17 @@ const Task = () => {
 
   const uploadImage = async () => {
     if (!selectedImage) {
-      Alert.alert("Error", "Pilih gambar terlebih dahulu");
+      snackbarRef.current.show("Pilih gambar terlebih dahulu", {
+        duration: 2000,
+        suffix: (
+          <Icon
+            name="closecircle"
+            color="white"
+            fontSize="md"
+            fontFamily="AntDesign"
+          />
+        ),
+      });
       return;
     }
 
@@ -61,6 +73,17 @@ const Task = () => {
       );
 
       console.log("Upload successful:", response.data.message);
+      snackbarRef.current.show("Unggah file berhasil", {
+        duration: 2000,
+        suffix: (
+          <Icon
+            name="checkcircle"
+            color="white"
+            fontSize="md"
+            fontFamily="AntDesign"
+          />
+        ),
+      });
       setSelectedImage(null);
     } catch (error) {
       console.error("Error uploading image", error);
@@ -69,7 +92,7 @@ const Task = () => {
   };
 
   return (
-    <Div>
+    <Div h="100%">
       <StatusBar barStyle="dark-content" backgroundColor="#008CFF" />
       <Div bg="#008CFF">
         <Header
@@ -169,6 +192,7 @@ const Task = () => {
           </Button>
         </Div>
       </Div>
+      <Snackbar ref={snackbarRef} bg="blue600" color="white" mx={20}></Snackbar>
     </Div>
   );
 };

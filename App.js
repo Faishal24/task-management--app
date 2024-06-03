@@ -1,7 +1,7 @@
 import React from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { StatusBar,  } from "react-native";
+import { StatusBar, LogBox} from "react-native";
 import { ThemeProvider } from 'react-native-magnus';
 import * as NavigationBar from 'expo-navigation-bar';
 import Home from "./src/Pages/Home";
@@ -18,7 +18,7 @@ const Stack = createNativeStackNavigator()
 
 export default function App() {
   NavigationBar.setBackgroundColorAsync("#F2F5FF")
-  
+  LogBox.ignoreAllLogs();
   return (
     <ThemeProvider>
       <StatusBar
