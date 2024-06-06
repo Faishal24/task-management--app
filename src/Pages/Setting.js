@@ -81,7 +81,7 @@ const Setting = ({ navigation }) => {
                 color="#008CFF"
               />
               <Div justifyContent="center" ml={10}>
-                <Text fontSize="lg">Lengkapi Identitas</Text>
+                <Text fontSize="lg">Ubah Identitas</Text>
               </Div>
             </Div>
 

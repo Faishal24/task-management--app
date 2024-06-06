@@ -5,7 +5,7 @@ import { useRoute } from "@react-navigation/native";
 import toCamelCase from "../../utils/camelCase";
 const logo = require("./../../assets/splash2.png");
 
-const Profile = ({navigation}) => {
+const Profile = ({ navigation }) => {
   const route = useRoute();
   const { worker } = route.params;
 
@@ -70,7 +70,7 @@ const Profile = ({navigation}) => {
           <Div alignItems="center">
             <Div h={0.7} w="100%" bg="#b3b8c9" m={12}></Div>
           </Div>
-          
+
           <Div row justifyContent="space-between">
             <Text fontSize="lg" fontWeight="bold">
               Tugas Selesai
@@ -79,7 +79,6 @@ const Profile = ({navigation}) => {
               {worker.tasks.filter((task) => task.status !== "pending").length}
             </Text>
           </Div>
-
         </Div>
 
         <Text fontWeight="900" my={10}>
@@ -124,7 +123,7 @@ const Profile = ({navigation}) => {
               Jenis Kelamin
             </Text>
             <Text fontSize="lg" fontWeight="bold">
-              {worker.gender == 'male' ? "Laki-laki" : "Perempuan"}
+              {worker.gender == "male" ? "Laki-laki" : "Perempuan"}
             </Text>
           </Div>
 

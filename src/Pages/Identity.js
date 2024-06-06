@@ -5,7 +5,7 @@ import { View } from "react-native";
 import { Picker } from "@react-native-picker/picker";
 import axios from "axios";
 
-const Identity = () => {
+const Identity = ({ navigation }) => {
   const ip = process.env.EXPO_PUBLIC_SERVER_ADDR;
   const route = useRoute();
   const { worker } = route.params;
@@ -75,7 +75,7 @@ const Identity = () => {
         shadow={0}
         bg="#F2F5FF"
         prefix={
-          <Button bg="transparent">
+          <Button bg="transparent" onPress={() => navigation.goBack()}>
             <Icon
               name="arrow-back"
               fontFamily="Ionicons"
@@ -85,7 +85,7 @@ const Identity = () => {
           </Button>
         }
       >
-        Identitas
+        Ubah Identitas
       </Header>
 
       <Div mx={20}>
