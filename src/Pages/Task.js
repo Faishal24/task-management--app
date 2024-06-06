@@ -12,7 +12,7 @@ const snackbarRef = React.createRef();
 const Task = () => {
   const { task } = useRoute().params;
   const [selectedImage, setSelectedImage] = useState(null);
-  const ip = process.env.EXPO_PUBLIC_SERVER_ADDR
+  const ip = process.env.EXPO_PUBLIC_SERVER_ADDR;
 
   const pickImage = async () => {
     let permissionResult =
@@ -61,16 +61,15 @@ const Task = () => {
         type: "image/jpeg", // adjust according to the image type
         name: "image.jpg",
       });
-
-      const response = await axios.put(
-        `http://${ip}/tasks/${task.taskId}/upload`,
-        formData,
-        {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        }
-      );
+      // const response = await axios.put(
+      //   `http://${ip}/tasks/${task.taskId}/upload`,
+      //   formData,
+      //   {
+      //     headers: {
+      //       "Content-Type": "multipart/form-data",
+      //     },
+      //   }
+      // );
 
       console.log("Upload successful:", response.data.message);
       snackbarRef.current.show("Unggah file berhasil", {
@@ -176,7 +175,11 @@ const Task = () => {
               alignItems="center"
               justifyContent="center"
             >
-              <Text>Klik untuk unggah file sebagai bukti</Text>
+              {selectedImage ? (
+                <Text>{selectedImage.split('/').pop()}</Text>
+              ) : (
+                <Text>Klik untuk unggah file sebagai bukti</Text>
+              )}
             </Div>
           </TouchableOpacity>
           <Button
