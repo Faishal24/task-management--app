@@ -5,11 +5,14 @@ import { StatusBar, Alert, TouchableOpacity } from "react-native";
 import * as ImagePicker from "expo-image-picker";
 import dateFix from "../../utils/dateFix";
 import formatDate from "../../utils/formatDate";
+import toCamelCase from "../../utils/camelCase";
 import axios from "axios";
 
 const snackbarRef = React.createRef();
+const snackbarRefWarn = React.createRef();
+const snackbarRefDone = React.createRef();
 
-const Task = () => {
+const Task = ({ navigation }) => {
   const { task } = useRoute().params;
   const [selectedImage, setSelectedImage] = useState(null);
   const ip = process.env.EXPO_PUBLIC_SERVER_ADDR;
@@ -40,7 +43,7 @@ const Task = () => {
 
   const uploadImage = async () => {
     if (!selectedImage) {
-      snackbarRef.current.show("Pilih gambar terlebih dahulu", {
+      snackbarRefWarn.current.show("Pilih gambar terlebih dahulu", {
         duration: 2000,
         suffix: (
           <Icon
@@ -61,15 +64,15 @@ const Task = () => {
         type: "image/jpeg", // adjust according to the image type
         name: "image.jpg",
       });
-      // const response = await axios.put(
-      //   `http://${ip}/tasks/${task.taskId}/upload`,
-      //   formData,
-      //   {
-      //     headers: {
-      //       "Content-Type": "multipart/form-data",
-      //     },
-      //   }
-      // );
+      const response = await axios.put(
+        `http://${ip}/tasks/${task.taskId}/upload`,
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
 
       console.log("Upload successful:", response.data.message);
       snackbarRef.current.show("Unggah file berhasil", {
@@ -101,7 +104,7 @@ const Task = () => {
           color="white"
           bg="#008CFF"
           prefix={
-            <Button bg="transparent">
+            <Button bg="transparent" onPress={() => navigation.goBack()}>
               <Icon
                 name="arrow-back"
                 fontFamily="Ionicons"
@@ -120,7 +123,7 @@ const Task = () => {
             Nama
           </Text>
           <Text fontSize={25} fontWeight="900" color="white" mb={25}>
-            {task.description}
+            {toCamelCase(task.description)}
           </Text>
 
           <Text fontSize="xl" color="white" my={10}>
@@ -166,7 +169,24 @@ const Task = () => {
           <Text fontSize="xl" color="#b3b8c9" mb={10}>
             File
           </Text>
-          <TouchableOpacity onPress={pickImage}>
+          {task.status == "pending" ? (
+            <TouchableOpacity onPress={pickImage}>
+              <Div
+                w="100%"
+                h={100}
+                bg="#F2F5FF"
+                rounded={20}
+                alignItems="center"
+                justifyContent="center"
+              >
+                {selectedImage ? (
+                  <Text>{selectedImage.split("/").pop()}</Text>
+                ) : (
+                  <Text>Klik untuk unggah file sebagai bukti</Text>
+                )}
+              </Div>
+            </TouchableOpacity>
+          ) : (
             <Div
               w="100%"
               h={100}
@@ -175,27 +195,56 @@ const Task = () => {
               alignItems="center"
               justifyContent="center"
             >
-              {selectedImage ? (
-                <Text>{selectedImage.split('/').pop()}</Text>
-              ) : (
-                <Text>Klik untuk unggah file sebagai bukti</Text>
-              )}
+              <Text>Tugas sudah selesai</Text>
             </Div>
-          </TouchableOpacity>
+          )}
           <Button
             mt={20}
             w="100%"
             h={50}
             rounded={100}
-            bg="#008CFF"
+            bg={task.status == "pending" ? "#008CFF" : "gray400"}
+            color={task.status == "pending" ? "white" : "gray700"}
             fontWeight="900"
-            onPress={uploadImage}
+            onPress={
+              task.status == "pending"
+                ? uploadImage
+                : () =>
+                    snackbarRefDone.current.show("Tugas sudah selesai", {
+                      duration: 2000,
+                      suffix: (
+                        <Icon
+                          name="checkcircle"
+                          color="white"
+                          fontSize="md"
+                          fontFamily="AntDesign"
+                        />
+                      ),
+                    })
+            }
           >
-            Unggah File
+            {task.status == "pending" ? "Unggah File" : "Tugas Selesai"}
           </Button>
         </Div>
       </Div>
-      <Snackbar ref={snackbarRef} bg="blue600" color="white" mx={20}></Snackbar>
+      <Snackbar
+        ref={snackbarRefWarn}
+        bg="red600"
+        color="white"
+        mx={20}
+      ></Snackbar>
+      <Snackbar
+        ref={snackbarRef}
+        bg="green600"
+        color="white"
+        mx={20}
+      ></Snackbar>
+      <Snackbar
+        ref={snackbarRefDone}
+        bg="#008CFF"
+        color="white"
+        mx={20}
+      ></Snackbar>
     </Div>
   );
 };

@@ -178,7 +178,7 @@ const Login = ({ navigation }) => {
         </TouchableOpacity>
       </Div>
 
-      <Snackbar ref={snackbarRef} bg="red600" color="white"></Snackbar>
+      <Snackbar ref={snackbarRef} bg="red600" color="white" w="90%"></Snackbar>
     </Div>
   );
 };
