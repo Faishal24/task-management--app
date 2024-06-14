@@ -195,7 +195,7 @@ const Task = ({ navigation }) => {
               alignItems="center"
               justifyContent="center"
             >
-              <Text>Tugas sudah selesai</Text>
+              <Text>Berkas tugas sudah diserahkan</Text>
             </Div>
           )}
           <Button
@@ -223,7 +223,11 @@ const Task = ({ navigation }) => {
                     })
             }
           >
-            {task.status == "pending" ? "Unggah File" : "Tugas Selesai"}
+            {task.status == "pending"
+              ? "Unggah File"
+              : task.status == "submitted"
+              ? "Tugas Diserahkan"
+              : "Tugas Selesai"}
           </Button>
         </Div>
       </Div>
