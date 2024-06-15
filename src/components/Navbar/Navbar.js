@@ -12,8 +12,8 @@ const Navbar = ({ navigation, worker }) => {
         color="#2E3A59"
         rounded="md"
       /> */}
-      <Text fontSize="2xl" fontWeight="bold" color="#2E3A59">
-        Home 
+      <Text fontSize="2xl" fontWeight="900" color="#008CFF">
+        TManage
       </Text>
 
       <TouchableOpacity

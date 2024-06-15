@@ -27,14 +27,14 @@ const Lists = ({ navigation, worker }) => {
             addSuffix: true,
           });
 
-          const waktu = fns.split(' ')[1]
+          const waktu = fns.split(' ')[2]
           return (
             <TouchableOpacity onPress={() => navigation.navigate("Task", { task })}>
               <List
                 title={toCamelCase(
                   (task.description).split(" ").slice(0, 2).join(" ")
                 )}
-                date={`${waktu} hari yang akan datang`}
+                date={`${fns}`}
               />
             </TouchableOpacity>
           );

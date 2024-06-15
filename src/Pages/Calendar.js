@@ -143,7 +143,7 @@ const Calendar = ({ navigation }) => {
                   .split(" ")
                   .slice(0, 2)
                   .join(" ")}
-                date={task.createdAt}
+                date={task.dueTo}
               />
             </TouchableOpacity>
           ))
