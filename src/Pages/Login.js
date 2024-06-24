@@ -43,7 +43,7 @@ const Login = ({ navigation }) => {
 
       if (user) {
         // Jika login berhasil, fetch data dari /get menggunakan nama user
-        const response = await axios.get(`http://${ip}/get/${user.email}`);
+        const response = await axios.get(`https://${ip}/get/${user.email}`);
         const worker = response.data;
 
         // Menavigasi ke halaman Home dengan data worker yang ditemukan
@@ -75,7 +75,7 @@ const Login = ({ navigation }) => {
   useEffect(() => {
     const fetchWorkers = async () => {
       try {
-        const response = await axios.get(`http://${ip}/user/worker`);
+        const response = await axios.get(`https://${ip}/user/worker`);
         setWorkers(response.data);
       } catch (error) {
         console.error("Error fetching workers:", error);

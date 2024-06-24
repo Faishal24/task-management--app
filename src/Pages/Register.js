@@ -54,11 +54,11 @@ const Register = ({ navigation }) => {
     } else {
       console.log("Form submitted:", { name, email, password, devision });
       axios
-        .post(`http://${ip}/user/worker`, form)
+        .post(`https://${ip}/user/worker`, form)
         .then((res) => console.log(res.data))
         .catch((err) => console.log(err));
       axios
-        .post(`http://${ip}/add`, form2)
+        .post(`https://${ip}/add`, form2)
         .then((res) => console.log(res.data))
         .catch((err) => console.log(err));
       navigation.navigate("Login");

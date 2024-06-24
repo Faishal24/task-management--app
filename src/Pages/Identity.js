@@ -62,7 +62,7 @@ const Identity = ({ navigation }) => {
     // console.log(cleanedForm);
 
     axios
-      .put(`http://${ip}/update/user/${worker._id}`, filteredForm)
+      .put(`https://${ip}/update/user/${worker._id}`, filteredForm)
       .then((res) => console.log(res))
       .catch((err) => console.log(err));
   };
