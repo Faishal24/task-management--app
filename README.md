@@ -6,7 +6,7 @@ This Task Management mobile application is application designed to help worker m
 
 ## Screenshots
 ![ss mobile 1](https://github.com/Faishal24/task-management--app/assets/32897697/ab0fb2a0-4626-4614-bee3-9d9f0ece65f4)
-<img src="https://github.com/Faishal24/task-management--app/assets/32897697/ab0fb2a0-4626-4614-bee3-9d9f0ece65f4" height="100">
+<img src="https://github.com/Faishal24/task-management--app/assets/32897697/ab0fb2a0-4626-4614-bee3-9d9f0ece65f4" height="400">
 ![ss mobile 2](https://github.com/Faishal24/task-management--app/assets/32897697/61da4707-523c-4d19-9ff8-315a0e8ff83a)
 ![ss mobile 3](https://github.com/Faishal24/task-management--app/assets/32897697/78d3ee5d-4846-40d4-87b6-7042432c5468)
 ![ss mobile 4](https://github.com/Faishal24/task-management--app/assets/32897697/7855460a-0b97-4cdb-9439-ddcec275fbf9)
