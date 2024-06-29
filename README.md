@@ -5,12 +5,13 @@
 This Task Management mobile application is application designed to help worker manage their tasks efficiently. It provides features for assigning, and tracking tasks. The application is built with a React Native frontend and an Express.js backend, using MongoDB for data storage.
 
 ## Screenshots
+<p align="center">
 <img src="https://github.com/Faishal24/task-management--app/assets/32897697/ab0fb2a0-4626-4614-bee3-9d9f0ece65f4" height="400">
 <img src="https://github.com/Faishal24/task-management--app/assets/32897697/61da4707-523c-4d19-9ff8-315a0e8ff83a" height="400">
 <img src="https://github.com/Faishal24/task-management--app/assets/32897697/78d3ee5d-4846-40d4-87b6-7042432c5468" height="400">
 <img src="https://github.com/Faishal24/task-management--app/assets/32897697/7855460a-0b97-4cdb-9439-ddcec275fbf9" height="400">
 <img src="https://github.com/Faishal24/task-management--app/assets/32897697/a1209be9-10e1-4e61-8c9c-3b7ae995749f" height="400">
-
+</p>
 
 
 ## Features
