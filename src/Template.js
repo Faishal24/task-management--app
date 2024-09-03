@@ -28,7 +28,7 @@ const Template = ({navigation}) => {
       {renderScreen()}
 
       <Div
-        bottom={0}
+        bottom={15}
         position="absolute"
         w="100%"
         row
