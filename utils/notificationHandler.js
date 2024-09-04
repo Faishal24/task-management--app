@@ -8,12 +8,12 @@ Notifications.setNotificationHandler({
   }),
 });
 
-const notificationHandler = async () => {
-  console.log("Notification Test");
+const notificationHandler = async ({ title, body }) => {
+  console.log("Notification Test", title, body);
   await Notifications.scheduleNotificationAsync({
     content: {
-      title: "Reminder Tugas",
-      body: 'Pengumpulan tugas "Analisa Laporan" akan segera berakhir',
+      title: title,
+      body: body,
       data: { data: "goes here" },
     },
     trigger: { seconds: 1 }, // Notifikasi akan muncul setelah 2 detik
