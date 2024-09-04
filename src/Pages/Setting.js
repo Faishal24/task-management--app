@@ -12,12 +12,7 @@ const Setting = ({ navigation }) => {
 
   return (
     <Div bg="#F2F5FF" h="100%">
-      <Header
-        p="lg"
-        alignment="center"
-        shadow={0}
-        bg="#F2F5FF"
-      >
+      <Header p="lg" alignment="center" shadow={0} bg="#F2F5FF">
         Pengaturan
       </Header>
 
@@ -129,7 +124,12 @@ const Setting = ({ navigation }) => {
         </TouchableOpacity>
 
         {/* Test Notification */}
-        <TouchableOpacity onPress={notificationHandler}>
+        <TouchableOpacity
+          onPress={() => notificationHandler({
+            title: "Ini Judul",
+            body: "Ini body",
+          })}
+        >
           <Div
             p={15}
             bg="#D8DEF3"
