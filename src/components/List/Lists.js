@@ -12,27 +12,32 @@ const Lists = ({ navigation, worker }) => {
     setTasks(worker.tasks);
   }, [worker]);
 
-  const data = tasks.slice(0, 2)
+  const dataTest = tasks.filter((task) => task.status !== "done");
 
   return (
     <Div h={190}>
       <ScrollView showsVerticalScrollIndicator={false}>
-        {data.filter((task) => task.status !== "done").map((task) => {
-          const [day, month, year] = task.dueTo.split('-')
+        {dataTest.map((task) => {
+          const [day, month, year] = task.dueTo.split("-");
           const numericDay = parseInt(day, 10);
           const numericMonth = parseInt(month - 1, 10);
           const numericYear = parseInt(year, 10);
 
-          const fns = formatDistanceToNow(new Date(numericYear, numericMonth, numericDay),{
-            addSuffix: true,
-          });
+          const fns = formatDistanceToNow(
+            new Date(numericYear, numericMonth, numericDay),
+            {
+              addSuffix: true,
+            }
+          );
 
-          const waktu = fns.split(' ')[2]
+          const waktu = fns.split(" ")[2];
           return (
-            <TouchableOpacity onPress={() => navigation.navigate("Task", { task })}>
+            <TouchableOpacity
+              onPress={() => navigation.navigate("Task", { task })}
+            >
               <List
                 title={toCamelCase(
-                  (task.description).split(" ").slice(0, 2).join(" ")
+                  task.description.split(" ").slice(0, 2).join(" ") + "..."
                 )}
                 date={`${fns}`}
               />
@@ -41,7 +46,6 @@ const Lists = ({ navigation, worker }) => {
         })}
       </ScrollView>
     </Div>
-    // onPress={() => navigation.navigate("Task", { task })
   );
 };
 
