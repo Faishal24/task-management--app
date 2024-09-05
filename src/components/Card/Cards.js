@@ -39,7 +39,7 @@ const Cards = ({ navigation, worker, filter }) => {
           }}
           source={empty}
         />
-        <Text fontWeight="900" fontSize={25} color="#2E3A59">Tidak ada item</Text>
+        <Text fontWeight="900" fontSize={25} color="#2E3A59">Tidak ada tugas</Text>
         </Div>
       ) : (
         <Div justifyContent="space-between" row mx={-20}>

@@ -5,14 +5,14 @@ import { Div, Icon, Text } from "react-native-magnus";
 const Navbar = ({ navigation, worker }) => {
   return (
     <Div pt="lg" px={20} row justifyContent="space-between">
-      {/* <Icon
+      <Icon
         name="menu"
         fontFamily="Ionicons"
         fontSize={32}
         color="#2E3A59"
         rounded="md"
-      /> */}
-      <Text fontSize="2xl" fontWeight="900" color="#008CFF">
+      />
+      <Text fontSize="2xl" fontWeight="900" color="#014b87">
         TManage
       </Text>
 
