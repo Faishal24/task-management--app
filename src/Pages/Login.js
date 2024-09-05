@@ -35,10 +35,11 @@ const Login = ({ navigation }) => {
   };
 
   const handleLogin = async () => {
+    const trimmedEmail = form.email.trim();
     try {
       const user = workers.find(
         (worker) =>
-          worker.email === form.email && worker.password === form.password
+          worker.email === trimmedEmail && worker.password === form.password
       );
 
       if (user) {
@@ -69,9 +70,6 @@ const Login = ({ navigation }) => {
     }
   };
 
-  ///////////////
-  // useEffect //
-  ///////////////
   useEffect(() => {
     const fetchWorkers = async () => {
       try {
