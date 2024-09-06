@@ -9,7 +9,14 @@ const logo = require("./../../assets/splash2.png");
 const Setting = ({ navigation }) => {
   const route = useRoute();
   const { worker } = route.params;
-
+  const exampleTask = {
+    taskId: "1715431972890",
+    description: "Menganalisis data penelitian",
+    status: "done",
+    createdAt: "01-09-2024",
+    dueTo: "08-09-2024",
+    content: "Menganalisis data penelitian untuk menemukan pola yang relevan.",
+  };
   return (
     <Div bg="#F2F5FF" h="100%">
       <Header p="lg" alignment="center" shadow={0} bg="#F2F5FF">
@@ -125,10 +132,7 @@ const Setting = ({ navigation }) => {
 
         {/* Test Notification */}
         <TouchableOpacity
-          onPress={() => notificationHandler({
-            title: "Ini Judul",
-            body: "Ini body",
-          })}
+          onPress={() => notificationHandler(worker.tasks)}
         >
           <Div
             p={15}
