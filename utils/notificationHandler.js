@@ -33,16 +33,12 @@ const notificationHandler = async (tasks) => {
     const month = formattedToday.slice(3, 5);
     const monthDue = dueDate.slice(3, 5);
 
-    if (
-      dayDue - 1 === day &&
-      month === monthDue &&
-      tasks[i].status !== "done"
-    ) {
+    if (dayDue - 1 == day && month == monthDue && tasks[i].status !== "done") {
       console.log("Tugas ini harus diselesaikan hari ini:", tasks[i]);
       await scheduleNotification(tasks[i]);
     } else {
       console.log("Tidak ada tugas yang harus diselesaikan hari ini.");
-      console.log(tasks[i].status)
+      console.log(tasks[i].status);
     }
   }
 };
