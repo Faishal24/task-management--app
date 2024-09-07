@@ -64,7 +64,7 @@ const Task = ({ navigation }) => {
         type: "image/jpeg", // adjust according to the image type
         name: "image.jpg",
       });
-      const response = await axios.put(
+      const response = await axios.post(
         `https://${ip}/tasks/upload/${task.taskId}`,
         formData,
         {
