@@ -65,7 +65,7 @@ const Task = ({ navigation }) => {
         name: "image.jpg",
       });
       const response = await axios.put(
-        `https://${ip}/tasks/${task.taskId}/upload`,
+        `https://${ip}/tasks/upload/${task.taskId}`,
         formData,
         {
           headers: {
