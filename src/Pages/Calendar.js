@@ -73,7 +73,7 @@ const Calendar = ({ navigation }) => {
     if (selectedDate) {
       const formattedDate = format(selectedDate, "dd-MM-yyyy");
       const tasksForDate = worker.tasks.filter(
-        (task) => task.createdAt === formattedDate
+        (task) => task.dueTo === formattedDate
       );
       setTasks(tasksForDate);
     } else {
@@ -117,9 +117,11 @@ const Calendar = ({ navigation }) => {
         ></Header> */}
 
         <Div pt={15} px={20} pb={30}>
+          <TouchableOpacity onPress={() => console.log(selectedDate)}>
           <Text fontSize={35} fontWeight="900" color="#2E3A59">
             {format(selectedDate, "MMMM")}
           </Text>
+          </TouchableOpacity>
           <CalendarWeek
             selectedDate={selectedDate}
             onSelectDate={setSelectedDate}
@@ -131,7 +133,7 @@ const Calendar = ({ navigation }) => {
           Tugas
         </Text>
         {tasks.length === 0 ? (
-          <Text>Tidak ada item</Text>
+          <Text>Tidak ada tugas :)</Text>
         ) : (
           tasks.map((task) => (
             <TouchableOpacity

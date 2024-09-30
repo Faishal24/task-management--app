@@ -4,7 +4,7 @@
     "slug": "test-app",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon_2.png",
+    "icon": "./assets/adaptive-icon2.png",
     "userInterfaceStyle": "light",
     "splash": {
       "image": "./assets/splash.png",
@@ -16,8 +16,7 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon2.png",
-        "backgroundColor": "#F2F5FF"
+        "foregroundImage": "./assets/adaptive-icon2.png"
       },
       "permissions": [
         "android.permission.RECORD_AUDIO"

@@ -33,7 +33,8 @@ const notificationHandler = async (tasks) => {
     const month = formattedToday.slice(3, 5);
     const monthDue = dueDate.slice(3, 5);
 
-    if (dayDue - 1 == day && month == monthDue && tasks[i].status !== "done") {
+    // Notifikasi muncul ketika h-1 batas pengumpulan tugas
+    if ((dayDue - 1 == day || day == dayDue) && month == monthDue && tasks[i].status !== "done") {
       console.log("Tugas ini harus diselesaikan hari ini:", tasks[i]);
       await scheduleNotification(tasks[i]);
     } else {

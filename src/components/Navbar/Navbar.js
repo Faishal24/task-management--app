@@ -12,7 +12,7 @@ const Navbar = ({ navigation, worker }) => {
         color="#2E3A59"
         rounded="md"
       />
-      <Text fontSize="2xl" fontWeight="900" color="#014b87">
+      <Text fontSize="2xl" fontWeight="900" color="#2E3A59">
         TManage
       </Text>
 
