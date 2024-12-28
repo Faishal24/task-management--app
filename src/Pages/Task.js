@@ -3,6 +3,7 @@ import { useRoute } from "@react-navigation/native";
 import { Div, Text, Icon, Header, Button, Snackbar } from "react-native-magnus";
 import { StatusBar, Alert, TouchableOpacity } from "react-native";
 import * as ImagePicker from "expo-image-picker";
+import * as DocumentPicker from 'expo-document-picker';
 import dateFix from "../../utils/dateFix";
 import formatDate from "../../utils/formatDate";
 import toCamelCase from "../../utils/camelCase";
@@ -14,10 +15,10 @@ const snackbarRefDone = React.createRef();
 
 const Task = ({ navigation }) => {
   const { task } = useRoute().params;
-  const [selectedImage, setSelectedImage] = useState(null);
+  const [selectedDocument, setSelectedDocument] = useState(null);
   const ip = process.env.EXPO_PUBLIC_SERVER_ADDR;
 
-  const pickImage = async () => {
+  const pickDocument = async () => {
     let permissionResult =
       await ImagePicker.requestMediaLibraryPermissionsAsync();
 
@@ -29,20 +30,17 @@ const Task = ({ navigation }) => {
       return;
     }
 
-    let result = await ImagePicker.launchImageLibraryAsync({
-      mediaTypes: ImagePicker.MediaTypeOptions.Images,
-      quality: 1,
-    });
+    let result = await DocumentPicker.getDocumentAsync();
 
     console.log(result);
 
     if (!result.canceled) {
-      setSelectedImage(result.assets[0].uri);
+      setSelectedDocument(result.assets[0].uri);
     }
   };
 
-  const uploadImage = async () => {
-    if (!selectedImage) {
+  const uploadDocument = async () => {
+    if (!selectedDocument) {
       snackbarRefWarn.current.show("Pilih gambar terlebih dahulu", {
         duration: 2000,
         suffix: (
@@ -58,11 +56,15 @@ const Task = ({ navigation }) => {
     }
 
     try {
+      console.log(selectedDocument)
+      const fileType = selectedDocument.split('.').pop();
+      console.log(fileType);
+
       const formData = new FormData();
       formData.append("uploadFile", {
-        uri: selectedImage,
-        type: "image/jpeg", // adjust according to the image type
-        name: "image.jpg",
+        uri: selectedDocument,
+        type: `application/${fileType}`,
+        name: `document.${fileType}`,
       });
       const response = await axios.post(
         `https://${ip}/tasks/upload/${task.taskId}`,
@@ -86,7 +88,7 @@ const Task = ({ navigation }) => {
           />
         ),
       });
-      setSelectedImage(null);
+      setSelectedDocument(null);
     } catch (error) {
       console.error("Error uploading image", error);
       Alert.alert("Error", "Gagal mengunggah gambar");
@@ -170,7 +172,7 @@ const Task = ({ navigation }) => {
             File
           </Text>
           {task.status == "pending" ? (
-            <TouchableOpacity onPress={pickImage}>
+            <TouchableOpacity onPress={pickDocument}>
               <Div
                 w="100%"
                 h={100}
@@ -179,8 +181,8 @@ const Task = ({ navigation }) => {
                 alignItems="center"
                 justifyContent="center"
               >
-                {selectedImage ? (
-                  <Text>{selectedImage.split("/").pop()}</Text>
+                {selectedDocument ? (
+                  <Text>{selectedDocument.split("/").pop()}</Text>
                 ) : (
                   <Text>Klik untuk unggah file sebagai bukti</Text>
                 )}
@@ -208,7 +210,7 @@ const Task = ({ navigation }) => {
             fontWeight="900"
             onPress={
               task.status == "pending"
-                ? uploadImage
+                ? uploadDocument
                 : () =>
                     snackbarRefDone.current.show("Tugas sudah selesai", {
                       duration: 2000,

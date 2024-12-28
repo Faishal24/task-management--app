@@ -131,7 +131,7 @@ const Setting = ({ navigation }) => {
         </TouchableOpacity>
 
         {/* Test Notification */}
-        <TouchableOpacity
+        {/* <TouchableOpacity
           onPress={() => notificationHandler(worker.tasks)}
         >
           <Div
@@ -163,7 +163,7 @@ const Setting = ({ navigation }) => {
               color="#2E3A59"
             />
           </Div>
-        </TouchableOpacity>
+        </TouchableOpacity> */}
       </Div>
     </Div>
   );
