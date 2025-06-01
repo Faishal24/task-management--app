@@ -1,15 +1,14 @@
-import React, { useState, useEffect } from "react";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
 import { Image, TouchableOpacity } from "react-native";
 import {
+  Button,
   Div,
-  Text,
   Icon,
   Input,
-  Button,
   Snackbar,
-  SnackbarRef,
+  Text
 } from "react-native-magnus";
-import axios from "axios";
 const logo = require("./../../assets/logo.png");
 
 const snackbarRef = React.createRef();
@@ -43,13 +42,9 @@ const Login = ({ navigation }) => {
       );
 
       if (user) {
-        // Jika login berhasil, fetch data dari /get menggunakan nama user
-        const response = await axios.get(`https://${ip}/get/${user.email}`);
+        const response = await axios.get(`${ip}/tasks/worker/${user.email}`);
         const worker = response.data;
-
-        // Menavigasi ke halaman Home dengan data worker yang ditemukan
         navigation.navigate("Template", { worker });
-        console.log(worker);
       } else {
         if (snackbarRef.current) {
           snackbarRef.current.show("Nama atau kata sandi salah", {
@@ -73,7 +68,7 @@ const Login = ({ navigation }) => {
   useEffect(() => {
     const fetchWorkers = async () => {
       try {
-        const response = await axios.get(`https://${ip}/user/worker`);
+        const response = await axios.get(`${ip}/user/worker`);
         setWorkers(response.data);
       } catch (error) {
         console.error("Error fetching workers:", error);
@@ -162,7 +157,7 @@ const Login = ({ navigation }) => {
           Masuk
         </Button>
 
-        <TouchableOpacity onPress={() => navigation.navigate("Register")}>
+        {/* <TouchableOpacity onPress={() => navigation.navigate("Register")}>
           <Text
             my={10}
             fontSize="lg"
@@ -173,7 +168,7 @@ const Login = ({ navigation }) => {
           >
             Belum Punya Akun?
           </Text>
-        </TouchableOpacity>
+        </TouchableOpacity> */}
       </Div>
 
       <Snackbar ref={snackbarRef} bg="red600" color="white" w="90%"></Snackbar>

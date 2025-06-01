@@ -1,9 +1,9 @@
-import React, { useState } from "react";
-import { Button, Icon, Div, Header, Input, Text } from "react-native-magnus";
-import { useRoute } from "@react-navigation/native";
-import { View } from "react-native";
 import { Picker } from "@react-native-picker/picker";
+import { useRoute } from "@react-navigation/native";
 import axios from "axios";
+import { useState } from "react";
+import { View } from "react-native";
+import { Button, Div, Header, Icon, Input } from "react-native-magnus";
 
 const Identity = ({ navigation }) => {
   const ip = process.env.EXPO_PUBLIC_SERVER_ADDR;
@@ -59,10 +59,9 @@ const Identity = ({ navigation }) => {
         ([key, value]) => value && value !== "undefined"
       )
     );
-    // console.log(cleanedForm);
 
     axios
-      .put(`https://${ip}/update/user/${worker._id}`, filteredForm)
+      .put(`${ip}/tasks/worker/${worker._id}`, filteredForm)
       .then((res) => console.log(res))
       .catch((err) => console.log(err));
   };

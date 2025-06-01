@@ -15,11 +15,11 @@ const Cards = ({ navigation, worker, filter }) => {
   const filterTask = (tasks, filter) => {
     switch (filter) {
       case "Tersedia":
-        return tasks.filter((task) => task.status == "pending");
+        return tasks?.filter((task) => task.status == "pending");
       case "Diserahkan":
-        return tasks.filter((task) => task.status == "submitted");
+        return tasks?.filter((task) => task.status == "submitted");
       case "Selesai":
-        return tasks.filter((task) => task.status == "done");
+        return tasks?.filter((task) => task.status == "done");
       default:
         return tasks;
     }
@@ -29,7 +29,7 @@ const Cards = ({ navigation, worker, filter }) => {
 
   return (
     <Div h={260}>
-      {filteredTask.length == 0 ? (
+      {filteredTask?.length == 0 ? (
         <Div justifyContent="center" alignItems="center" h="96%">
           <Image
           style={{
@@ -44,9 +44,14 @@ const Cards = ({ navigation, worker, filter }) => {
       ) : (
         <Div justifyContent="space-between" row mx={-20}>
           <ScrollView horizontal={true}>
-            {filteredTask.map((task, index) => (
+            {filteredTask?.map((task, index) => (
               <TouchableOpacity
-                onPress={() => navigation.navigate("Task", { task })}
+                onPress={() => navigation.navigate("Task", { task, worker })}
+                style={{
+                  marginLeft: 20,
+                  marginRight:
+                    index === filteredTask.length - 1 ? 20 : 0,
+                }}
               >
                 <Card
                   title={`Tugas ${index + 1}`}

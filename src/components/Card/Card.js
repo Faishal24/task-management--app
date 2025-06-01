@@ -10,7 +10,7 @@ const Card = ({ title, description, date, opacity }) => {
       bg="#008CFF"
       rounded="2xl"
       p={25}
-      mx={20}
+      // mx={20}
       my={20}
       opacity={opacity}
     >

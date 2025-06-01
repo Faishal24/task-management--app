@@ -25,7 +25,7 @@ const Greeting = ({ worker }) => {
         mt="sm"
         mb={5}
       >
-        Hi, {worker.name.split(' ')[0]}!
+        Hi, {(worker.name || "Guest").split(' ')[0]}!
       </Text>
         <Text mb={30} fontSize="xl">
           {greetingMessage}

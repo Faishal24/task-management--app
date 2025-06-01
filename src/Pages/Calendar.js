@@ -23,19 +23,11 @@ const CalendarWeek = ({ selectedDate, onSelectDate }) => {
             rounded={20}
             alignItems="center"
             justifyContent="center"
-            bg={
-              selectedDate &&
-              format(day, "dd-MM-yyyy") === format(selectedDate, "dd-MM-yyyy")
-                ? "#D8DEF3"
-                : "white"
-            }
+            bg={selectedDate && format(day, "dd-MM-yyyy") === format(selectedDate, "dd-MM-yyyy") ? "#D8DEF3" : "white"}
           >
             <Text
               color={
-                selectedDate &&
-                format(day, "dd-MM-yyyy") === format(selectedDate, "dd-MM-yyyy")
-                  ? "#1365bd"
-                  : "#2E3A59"
+                selectedDate && format(day, "dd-MM-yyyy") === format(selectedDate, "dd-MM-yyyy") ? "#1365bd" : "#2E3A59"
               }
               fontWeight="900"
             >
@@ -43,10 +35,7 @@ const CalendarWeek = ({ selectedDate, onSelectDate }) => {
             </Text>
             <Text
               color={
-                selectedDate &&
-                format(day, "dd-MM-yyyy") === format(selectedDate, "dd-MM-yyyy")
-                  ? "#1365bd"
-                  : "#2E3A59"
+                selectedDate && format(day, "dd-MM-yyyy") === format(selectedDate, "dd-MM-yyyy") ? "#1365bd" : "#2E3A59"
               }
               fontWeight="300"
             >
@@ -72,9 +61,7 @@ const Calendar = ({ navigation }) => {
   useEffect(() => {
     if (selectedDate) {
       const formattedDate = format(selectedDate, "dd-MM-yyyy");
-      const tasksForDate = worker.tasks.filter(
-        (task) => task.dueTo === formattedDate
-      );
+      const tasksForDate = worker.tasks.filter((task) => task.dueTo === formattedDate);
       setTasks(tasksForDate);
     } else {
       setTasks(worker.tasks);
@@ -83,12 +70,7 @@ const Calendar = ({ navigation }) => {
 
   return (
     <Div bg="#F2F5FF" h="100%">
-      <Div
-        bg="white"
-        roundedBottomLeft={25}
-        roundedBottomRight={25}
-        shadow="sm"
-      >
+      <Div bg="white" roundedBottomLeft={25} roundedBottomRight={25} shadow="sm">
         {/* <Header
           p="lg"
           alignment="left"
@@ -118,14 +100,11 @@ const Calendar = ({ navigation }) => {
 
         <Div pt={15} px={20} pb={30}>
           <TouchableOpacity onPress={() => console.log(selectedDate)}>
-          <Text fontSize={35} fontWeight="900" color="#2E3A59">
-            {format(selectedDate, "MMMM")}
-          </Text>
+            <Text fontSize={35} fontWeight="900" color="#2E3A59">
+              {format(selectedDate, "MMMM")}
+            </Text>
           </TouchableOpacity>
-          <CalendarWeek
-            selectedDate={selectedDate}
-            onSelectDate={setSelectedDate}
-          />
+          <CalendarWeek selectedDate={selectedDate} onSelectDate={setSelectedDate} />
         </Div>
       </Div>
       <Div pt={30} px={20}>
@@ -136,15 +115,10 @@ const Calendar = ({ navigation }) => {
           <Text>Tidak ada tugas :)</Text>
         ) : (
           tasks.map((task) => (
-            <TouchableOpacity
-              onPress={() => navigation.navigate("Task", { task })}
-            >
+            <TouchableOpacity onPress={() => navigation.navigate("Task", { task, worker })}>
               <List
                 key={task.id}
-                title={toCamelCase(task.description)
-                  .split(" ")
-                  .slice(0, 2)
-                  .join(" ")}
+                title={toCamelCase(task.description).split(" ").slice(0, 2).join(" ")}
                 date={task.dueTo}
               />
             </TouchableOpacity>

@@ -1,22 +1,31 @@
-import React, { useState } from "react";
 import { useRoute } from "@react-navigation/native";
-import { Div, Text, Icon, Header, Button, Snackbar } from "react-native-magnus";
-import { StatusBar, Alert, TouchableOpacity } from "react-native";
+import axios from "axios";
+import * as DocumentPicker from "expo-document-picker";
 import * as ImagePicker from "expo-image-picker";
-import * as DocumentPicker from 'expo-document-picker';
+import React, { useState } from "react";
+import { Alert, StatusBar, TouchableOpacity } from "react-native";
+import {
+  Button,
+  Div,
+  Header,
+  Icon,
+  Input,
+  Snackbar,
+  Text,
+} from "react-native-magnus";
+import toCamelCase from "../../utils/camelCase";
 import dateFix from "../../utils/dateFix";
 import formatDate from "../../utils/formatDate";
-import toCamelCase from "../../utils/camelCase";
-import axios from "axios";
 
 const snackbarRef = React.createRef();
 const snackbarRefWarn = React.createRef();
 const snackbarRefDone = React.createRef();
 
 const Task = ({ navigation }) => {
-  const { task } = useRoute().params;
-  const [selectedDocument, setSelectedDocument] = useState(null);
+  const { task, worker } = useRoute().params;
   const ip = process.env.EXPO_PUBLIC_SERVER_ADDR;
+  const [selectedDocument, setSelectedDocument] = useState(null);
+  const [note, setNote] = useState("");
 
   const pickDocument = async () => {
     let permissionResult =
@@ -32,8 +41,6 @@ const Task = ({ navigation }) => {
 
     let result = await DocumentPicker.getDocumentAsync();
 
-    console.log(result);
-
     if (!result.canceled) {
       setSelectedDocument(result.assets[0].uri);
     }
@@ -41,7 +48,7 @@ const Task = ({ navigation }) => {
 
   const uploadDocument = async () => {
     if (!selectedDocument) {
-      snackbarRefWarn.current.show("Pilih gambar terlebih dahulu", {
+      snackbarRefWarn.current.show("Pilih dokumen terlebih dahulu", {
         duration: 2000,
         suffix: (
           <Icon
@@ -56,18 +63,25 @@ const Task = ({ navigation }) => {
     }
 
     try {
-      console.log(selectedDocument)
-      const fileType = selectedDocument.split('.').pop();
-      console.log(fileType);
+      const fileType = selectedDocument.split(".").pop();
 
+      // post catatan tambahan
+      await axios.post(`${ip}/task-reports/`, {
+        task_id: task.taskId,
+        reported_by: worker.name,
+        report_text: note,
+      });
+
+      // Image upload
       const formData = new FormData();
       formData.append("uploadFile", {
         uri: selectedDocument,
         type: `application/${fileType}`,
         name: `document.${fileType}`,
       });
+
       const response = await axios.post(
-        `https://${ip}/tasks/upload/${task.taskId}`,
+        `${ip}/tasks/upload/${task.taskId}`,
         formData,
         {
           headers: {
@@ -76,7 +90,6 @@ const Task = ({ navigation }) => {
         }
       );
 
-      console.log("Upload successful:", response.data.message);
       snackbarRef.current.show("Unggah file berhasil", {
         duration: 2000,
         suffix: (
@@ -121,17 +134,17 @@ const Task = ({ navigation }) => {
 
         {/* Atas */}
         <Div px={25}>
-          <Text fontSize="xl" color="white" my={10}>
+          <Text fontSize="xl" color="white">
             Nama
           </Text>
-          <Text fontSize={25} fontWeight="900" color="white" mb={25}>
+          <Text fontSize={25} fontWeight="900" color="white" mb={15}>
             {toCamelCase(task.description)}
           </Text>
 
-          <Text fontSize="xl" color="white" my={10}>
+          <Text fontSize="xl" color="white">
             Tanggal
           </Text>
-          <Text fontSize={25} fontWeight="900" color="white" mb={35}>
+          <Text fontSize={25} fontWeight="900" color="white" mb={15}>
             {formatDate(task.dueTo)}
           </Text>
         </Div>
@@ -158,7 +171,7 @@ const Task = ({ navigation }) => {
           </Div>
         </Div>
 
-        <Div mt={15}>
+        <Div mt={10}>
           <Text fontSize="xl" color="#b3b8c9" my={10}>
             Deskripsi
           </Text>
@@ -167,7 +180,22 @@ const Task = ({ navigation }) => {
           </Text>
         </Div>
 
-        <Div mt={25}>
+        <Div mt={0}>
+          <Text fontSize="xl" color="#b3b8c9" my={10}>
+            Catatan Tambahan
+          </Text>
+          <Input
+            placeholder="Opsional"
+            p={10}
+            focusBorderColor="#008CFF"
+            borderColor="#008CFF"
+            onChangeText={(text) => setNote(text)}
+            value={note}
+          />
+          ;
+        </Div>
+
+        <Div mt={10}>
           <Text fontSize="xl" color="#b3b8c9" mb={10}>
             File
           </Text>
@@ -226,7 +254,7 @@ const Task = ({ navigation }) => {
             }
           >
             {task.status == "pending"
-              ? "Unggah File"
+              ? "Submit Tugas"
               : task.status == "submitted"
               ? "Tugas Diserahkan"
               : "Tugas Selesai"}

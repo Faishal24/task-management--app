@@ -7,17 +7,13 @@ import Filter from "../components/Filter";
 import Lists from "../components/List/Lists";
 import notificationHandler from "../../utils/notificationHandler";
 
-const Home = ({ navigation }) => {
-  const route = useRoute();
-  const { worker } = route.params;
-
-  useEffect(() => {
-    notificationHandler(worker.tasks);
-  }, [])
-
+const Home = ({ worker = {}, navigation, fetchData }) => {
+  // useEffect(() => {
+  //   notificationHandler(worker.tasks);
+  // }, [])
   return (
     <Div bg="#F2F5FF" h="100%">
-      <Navbar navigation={navigation} worker={worker}/>
+      <Navbar navigation={navigation} worker={worker} fetchData={fetchData}/>
       <Div mt={15} mx={20}>
         <Greeting worker={worker} />
         <Filter navigation={navigation} worker={worker}/>

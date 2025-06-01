@@ -1,8 +1,14 @@
 import React from "react";
-import { TouchableOpacity } from "react-native";
+import { TouchableOpacity, TouchableWithoutFeedback } from "react-native";
 import { Div, Icon, Text } from "react-native-magnus";
+import notificationHandler from "../../../utils/notificationHandler";
 
-const Navbar = ({ navigation, worker }) => {
+const Navbar = ({ navigation, worker, fetchData }) => {
+  const specialClick = () => {
+    notificationHandler(worker.tasks);
+    fetchData();
+  }
+
   return (
     <Div pt="lg" px={20} row justifyContent="space-between">
       <Icon
@@ -12,9 +18,12 @@ const Navbar = ({ navigation, worker }) => {
         color="#2E3A59"
         rounded="md"
       />
-      <Text fontSize="2xl" fontWeight="900" color="#2E3A59">
-        TManage
-      </Text>
+
+      <TouchableWithoutFeedback onPress={specialClick}>
+        <Text fontSize="2xl" fontWeight="900" color="#2E3A59">
+          TManage
+        </Text>
+      </TouchableWithoutFeedback>
 
       <TouchableOpacity
         onPress={() => navigation.navigate("Profile", { worker })}

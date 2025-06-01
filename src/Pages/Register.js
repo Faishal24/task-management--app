@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from "react";
-import { Image, TouchableOpacity } from "react-native";
-import { Div, Text, Icon, Input, Button, Snackbar } from "react-native-magnus";
 import { Picker } from "@react-native-picker/picker";
 import axios from "axios";
+import React, { useEffect, useState } from "react";
+import { Image, TouchableOpacity } from "react-native";
+import { Button, Div, Icon, Input, Snackbar, Text } from "react-native-magnus";
 
 const logo = require("./../../assets/logo.png");
 
@@ -54,11 +54,11 @@ const Register = ({ navigation }) => {
     } else {
       console.log("Form submitted:", { name, email, password, devision });
       axios
-        .post(`https://${ip}/user/worker`, form)
+        .post(`${ip}/user/worker`, form)
         .then((res) => console.log(res.data))
         .catch((err) => console.log(err));
       axios
-        .post(`https://${ip}/add`, form2)
+        .post(`${ip}/add`, form2)
         .then((res) => console.log(res.data))
         .catch((err) => console.log(err));
       navigation.navigate("Login");
